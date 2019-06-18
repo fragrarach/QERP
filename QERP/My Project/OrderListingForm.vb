@@ -1,97 +1,144 @@
 ﻿Public Class OrderListingForm
-    Public Overrides Sub LoadColumns()
-        Me.DataGridView.Columns.Clear()
+    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+        Dim ColumnIndex As Int16 = 0
+
+        Me.DataGridView.DataSource = RecordBinding
 
         Me.DataGridView.RowHeadersWidth = 20
 
-        Me.DataGridView.Columns.Add("Column1", "Order Number")
-        Me.DataGridView.Columns("Column1").Width = 112
-        Me.DataGridView.Columns("Column1").Frozen = True
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+        Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
-        Me.DataGridView.Columns.Add("Column2", "Client Number")
-        Me.DataGridView.Columns("Column2").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Client Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column3", "Client Order Number")
-        Me.DataGridView.Columns("Column3").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Client Order Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column4", "Order Date")
-        Me.DataGridView.Columns("Column4").Width = 112
-        Me.DataGridView.Columns("Column4").DefaultCellStyle.Format = "d"
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Date"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column5", "Order Status")
-        Me.DataGridView.Columns("Column5").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Status"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column6", "Packing Slips")
-        Me.DataGridView.Columns("Column6").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Packing Slips"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column7", "Invoices")
-        Me.DataGridView.Columns("Column7").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Invoices"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column8", "Note 1")
-        Me.DataGridView.Columns("Column8").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note 1"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column9", "Note 2")
-        Me.DataGridView.Columns("Column9").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note 2"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column10", "Note 3")
-        Me.DataGridView.Columns("Column10").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note 3"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column11", "Note 4")
-        Me.DataGridView.Columns("Column11").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note 4"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column12", "Required Date")
-        Me.DataGridView.Columns("Column12").Width = 112
-        Me.DataGridView.Columns("Column12").DefaultCellStyle.Format = "d"
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Required Date"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column13", "Name - Ship To")
-        Me.DataGridView.Columns("Column13").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Name - Ship To"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column14", "City - Ship To")
-        Me.DataGridView.Columns("Column14").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "City - Ship To"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column15", "Name - Invoice To")
-        Me.DataGridView.Columns("Column15").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Name - Invoice To"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column16", "City - Invoice To")
-        Me.DataGridView.Columns("Column16").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "City - Invoice To"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
         Dim CheckBoxColumn1 As New DataGridViewCheckBoxColumn With {
-            .Name = "Column17",
-            .HeaderText = "Allow BO",
-            .Width = 112
+            .Name = ColumnIndex,
+            .Width = 112,
+            .DataPropertyName = ColumnIndex,
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Allow BO"
         }
-        Me.DataGridView.Columns.Add(CheckBoxColumn1)
-        Me.DataGridView.Columns("Column17").SortMode = DataGridViewColumnSortMode.Automatic
+        Me.DataGridView.Columns.Insert(ColumnIndex, CheckBoxColumn1)
 
-        Me.DataGridView.Columns.Add("Column18", "Carrier")
-        Me.DataGridView.Columns("Column18").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Carrier"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
         Dim CheckBoxColumn2 As New DataGridViewCheckBoxColumn With {
-            .Name = "Column19",
-            .HeaderText = "Authorized",
-            .Width = 112
+            .Name = ColumnIndex,
+            .Width = 112,
+            .DataPropertyName = ColumnIndex,
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Authorized"
         }
-        Me.DataGridView.Columns.Add(CheckBoxColumn2)
-        Me.DataGridView.Columns("Column19").SortMode = DataGridViewColumnSortMode.Automatic
+        Me.DataGridView.Columns.Insert(ColumnIndex, CheckBoxColumn2)
 
-        Me.DataGridView.Columns.Add("Column20", "Order Type")
-        Me.DataGridView.Columns("Column20").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Type"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
         Dim CheckBoxColumn3 As New DataGridViewCheckBoxColumn With {
-            .Name = "Column21",
-            .HeaderText = "Order Printed",
-            .Width = 112
+            .Name = ColumnIndex,
+            .Width = 112,
+            .DataPropertyName = ColumnIndex,
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Order Printed"
         }
-        Me.DataGridView.Columns.Add(CheckBoxColumn3)
-        Me.DataGridView.Columns("Column21").SortMode = DataGridViewColumnSortMode.Automatic
+        Me.DataGridView.Columns.Insert(ColumnIndex, CheckBoxColumn3)
 
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
         Dim CheckBoxColumn4 As New DataGridViewCheckBoxColumn With {
-            .Name = "Column22",
-            .HeaderText = "Packing Slip Printed",
-            .Width = 112
+            .Name = ColumnIndex,
+            .Width = 112,
+            .DataPropertyName = ColumnIndex,
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Packing Slip Printed"
         }
-        Me.DataGridView.Columns.Add(CheckBoxColumn4)
-        Me.DataGridView.Columns("Column22").SortMode = DataGridViewColumnSortMode.Automatic
+        Me.DataGridView.Columns.Insert(ColumnIndex, CheckBoxColumn4)
 
     End Sub
 

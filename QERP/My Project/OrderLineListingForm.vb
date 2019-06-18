@@ -1,46 +1,90 @@
 ﻿Public Class OrderLineListingForm
-    Public Overrides Sub LoadColumns()
+    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+        Dim ColumnIndex As Int16 = 0
 
-        Me.DataGridView.Columns.Add("Column1", "Order Line Number")
-        Me.DataGridView.Columns("Column1").Width = 112
-        Me.DataGridView.Columns("Column1").Frozen = True
+        Me.DataGridView.DataSource = RecordBinding
 
-        Me.DataGridView.Columns.Add("Column2", "Part Number")
-        Me.DataGridView.Columns("Column2").Width = 112
+        Me.DataGridView.RowHeadersWidth = 20
 
-        Me.DataGridView.Columns.Add("Column3", "Part Description")
-        Me.DataGridView.Columns("Column3").Width = 112
+        DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+        Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
-        Me.DataGridView.Columns.Add("Column4", "Slip #")
-        Me.DataGridView.Columns("Column4").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column5", "Required Date")
-        Me.DataGridView.Columns("Column5").Width = 112
-        Me.DataGridView.Columns("Column5").DefaultCellStyle.Format = "d"
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Description"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column6", "Quantity")
-        Me.DataGridView.Columns("Column6").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Slip #"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column7", "Price")
-        Me.DataGridView.Columns("Column7").Width = 112
-        Me.DataGridView.Columns("Column7").DefaultCellStyle.Format = "c"
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Required Date"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column8", "Discount")
-        Me.DataGridView.Columns("Column8").Width = 112
-        Me.DataGridView.Columns("Column8").DefaultCellStyle.Format = "p"
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Quantity"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column9", "Reserved")
-        Me.DataGridView.Columns("Column9").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
+        Dim CurrencyColumn As New DataGridViewTextBoxColumn With {
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Price",
+            .Width = 112
+        }
+        Me.DataGridView.Columns.Insert(ColumnIndex, CurrencyColumn)
+        For i = 0 To RecordBinding.Count - 1
+            If Not IsDBNull(RecordBinding.Item(i).row(ColumnIndex)) Then
+                RecordBinding.Item(i).row(ColumnIndex) = FormatCurrency(RecordBinding.Item(i).row(ColumnIndex))
+            End If
+        Next
+        CurrencyColumn.DataPropertyName = ColumnIndex
 
-        Me.DataGridView.Columns.Add("Column10", "Shipped")
-        Me.DataGridView.Columns("Column10").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
+        Dim PercentageColumn As New DataGridViewTextBoxColumn With {
+            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+            .HeaderText = "Discount",
+            .Width = 112
+        }
+        Me.DataGridView.Columns.Insert(ColumnIndex, PercentageColumn)
+        For i = 0 To RecordBinding.Count - 1
+            If Not IsDBNull(RecordBinding.Item(i).row(ColumnIndex)) Then
+                RecordBinding.Item(i).row(ColumnIndex) = FormatPercent(RecordBinding.Item(i).row(ColumnIndex))
+            End If
+        Next
+        PercentageColumn.DataPropertyName = ColumnIndex
 
-        Me.DataGridView.Columns.Add("Column11", "Ready")
-        Me.DataGridView.Columns("Column11").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Reserved"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
-        Me.DataGridView.Columns.Add("Column12", "Prepared")
-        Me.DataGridView.Columns("Column12").Width = 112
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Shipped"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
 
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Ready"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+
+        ColumnIndex += 1
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Prepared"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
     End Sub
 
     Public Overrides Function CountQueryBuilder() As Object

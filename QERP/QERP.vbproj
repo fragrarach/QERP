@@ -131,6 +131,9 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.Windows.Forms.13.0.3501\lib\net20\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataGridViewAutoFilter.1.0.0\lib\DataGridViewAutoFilter.dll</HintPath>
+    </Reference>
     <Reference Include="Devart.Data, Version=5.0.2099.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Devart\dotConnect\PostgreSQL\Devart.Data.dll</HintPath>
@@ -211,6 +214,12 @@
     </Compile>
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
+    <Compile Include="My Project\ListingFormTest.Designer.vb">
+      <DependentUpon>ListingFormTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\ListingFormTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\OrderLineListingForm.Designer.vb">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </Compile>
@@ -292,6 +301,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\ListingFormTest.resx">
+      <DependentUpon>ListingFormTest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,4 @@
-﻿Public Class ListingForm
+﻿Public Class ListingFormTest
 
     Protected Shadows ParentForm As PartForm
     Protected Shadows Table As String
@@ -32,37 +32,109 @@
 
         LoadCount()
 
-        Dim RecordBinding As BindingSource = LoadListingData(Me)
+        LoadListingData(Me)
 
-        LoadColumns(RecordBinding)
+        LoadColumns()
 
     End Sub
 
-    Public Overridable Sub LoadColumns(RecordBinding As BindingSource)
+    Public Overridable Sub LoadColumns()
+        Dim ColumnIndex As Int16 = 0
 
+        DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+        Me.DataGridView.Columns(ColumnIndex).Frozen = True
+
+        ColumnIndex += 1
+        DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+
+        'Me.DataGridView.Columns.Add("Column3", "Part Description")
+        'Me.DataGridView.Columns("Column3").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column4", "Slip #")
+        'Me.DataGridView.Columns("Column4").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column5", "Required Date")
+        'Me.DataGridView.Columns("Column5").Width = 112
+        'Me.DataGridView.Columns("Column5").DefaultCellStyle.Format = "d"
+
+        'Me.DataGridView.Columns.Add("Column6", "Quantity")
+        'Me.DataGridView.Columns("Column6").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column7", "Price")
+        'Me.DataGridView.Columns("Column7").Width = 112
+        'Me.DataGridView.Columns("Column7").DefaultCellStyle.Format = "c"
+
+        'Me.DataGridView.Columns.Add("Column8", "Discount")
+        'Me.DataGridView.Columns("Column8").Width = 112
+        'Me.DataGridView.Columns("Column8").DefaultCellStyle.Format = "p"
+
+        'Me.DataGridView.Columns.Add("Column9", "Reserved")
+        'Me.DataGridView.Columns("Column9").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column10", "Shipped")
+        'Me.DataGridView.Columns("Column10").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column11", "Ready")
+        'Me.DataGridView.Columns("Column11").Width = 112
+
+        'Me.DataGridView.Columns.Add("Column12", "Prepared")
+        'Me.DataGridView.Columns("Column12").Width = 112
     End Sub
 
     Public Overridable Function CountQueryBuilder()
+        Dim Query As String = "SELECT COUNT(*) FROM order_line "
 
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+        Dim PartCount As String = Record(0, 0)
+        Return PartCount
     End Function
 
     Public Overridable Function ListingQueryBuilder()
+        Dim Query As String = "SELECT ol.orl_sort_idx "
 
+        Query += ", ol.prt_no "
+
+        Query += ", ol.prt_desc "
+
+        Query += ", CASE WHEN ol.inv_pckslp_no = 0 THEN NULL ELSE ol.inv_pckslp_no END AS inv_pckslp_no "
+
+        Query += ", ol.orl_req_dt "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_quantity END AS orl_quantity "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_price END AS orl_price "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.prt_dscnt / 100 END AS prt_dscnt "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_reserved_qty END AS orl_reserved_qty "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_ship_qty END AS orl_ship_qty "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_qty_ready END AS orl_qty_ready "
+
+        Query += ", CASE WHEN ol.prt_no = '' THEN NULL ELSE ol.orl_qty_ready_adj END AS orl_qty_ready_adj "
+
+        Query += "FROM order_line ol "
+
+        Query += "WHERE ol.ord_no = 66075 "
+
+        Query += "ORDER BY ol.orl_sort_idx "
+
+        Return Query
     End Function
 
-    Public Function LoadListingData(ByRef ParentForm As Form)
+    Public Sub LoadListingData(ByRef ParentForm As Form)
         Console.WriteLine("LOAD START " + TimeString)
         Dim Query As String = ListingQueryBuilder()
         Dim Record As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
         Dim RecordTable As New DataTable
-        Dim RecordBinding As New BindingSource With {
-                .DataSource = RecordTable
-        }
-
 
         If Record IsNot Nothing Then
             DataGridView.Rows.Clear()
-            DataGridView.Columns.Clear()
 
             Dim Max As Int32 = (UBound(Record, 2) + 1)
             'Change reference
@@ -75,28 +147,31 @@
 
             For RowIndex = 0 To UBound(Record, 2)
                 Dim RecordRow As DataRow = RecordTable.NewRow
+                'DataGridView.Rows.Add()
                 For ColumnIndex = 0 To UBound(Record, 1)
                     If TypeOf Record(ColumnIndex, RowIndex) Is String Then
+                        'DataGridView.Item(ColumnIndex, RowIndex).Value = Trim(Record(ColumnIndex, RowIndex))
                         RecordRow(ColumnIndex) = Trim(Record(ColumnIndex, RowIndex))
-                    ElseIf TypeOf Record(ColumnIndex, RowIndex) Is DateTime Then
-                        RecordRow(ColumnIndex) = Record(ColumnIndex, RowIndex).ToShortDateString()
                     Else
+                        'DataGridView.Item(ColumnIndex, RowIndex).Value = Record(ColumnIndex, RowIndex)
                         RecordRow(ColumnIndex) = Record(ColumnIndex, RowIndex)
                     End If
                 Next
                 RecordTable.Rows.Add(RecordRow)
                 LoadingForm.LoadingBarIncrement()
             Next
-
-
             LoadingForm.Close()
+
+            Dim RecordBinding As New BindingSource With {
+                .DataSource = RecordTable
+            }
+            DataGridView.DataSource = RecordBinding
+
         End If
 
         ExtensionMethods.DoubleBuffered(Me.DataGridView, True)
         Console.WriteLine("LOAD FINISH " + TimeString)
-
-        Return RecordBinding
-    End Function
+    End Sub
 
     Public Overridable Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellDoubleClick
 
