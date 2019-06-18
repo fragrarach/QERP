@@ -146,8 +146,8 @@
         Dim Query As String = "SELECT COUNT(*) FROM order_header "
 
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        Dim PartCount As String = Record(0, 0)
-        Return PartCount
+        Dim Count As String = Record(0, 0)
+        Return Count
     End Function
 
     Public Overrides Function ListingQueryBuilder() As Object

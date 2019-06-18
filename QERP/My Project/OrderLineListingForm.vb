@@ -6,7 +6,7 @@
 
         Me.DataGridView.RowHeadersWidth = 20
 
-        DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
         Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
         Me.DataGridView.Columns(ColumnIndex).Width = 112
         Me.DataGridView.Columns(ColumnIndex).Frozen = True
@@ -91,8 +91,8 @@
         Dim Query As String = "SELECT COUNT(*) FROM order_line "
 
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        Dim PartCount As String = Record(0, 0)
-        Return PartCount
+        Dim Count As String = Record(0, 0)
+        Return Count
     End Function
 
     Public Overrides Function ListingQueryBuilder() As Object

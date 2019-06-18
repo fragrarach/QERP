@@ -160,12 +160,11 @@ Partial Class ListingForm
         Me.ColumnConfigButton.FlatAppearance.BorderSize = 0
         Me.ColumnConfigButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLight
         Me.ColumnConfigButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLight
-        Me.ColumnConfigButton.Image = CType(resources.GetObject("ColumnConfigButton.Image"), System.Drawing.Image)
-        Me.ColumnConfigButton.Location = New System.Drawing.Point(37, 4)
-        Me.ColumnConfigButton.Margin = New System.Windows.Forms.Padding(4)
+        Me.ColumnConfigButton.Image = Global.QERP.My.Resources.Resources.CONFIGURE_ICON
+        Me.ColumnConfigButton.Location = New System.Drawing.Point(36, 4)
         Me.ColumnConfigButton.Name = "ColumnConfigButton"
         Me.ColumnConfigButton.Size = New System.Drawing.Size(25, 25)
-        Me.ColumnConfigButton.TabIndex = 5
+        Me.ColumnConfigButton.TabIndex = 10
         Me.ColumnConfigButton.UseVisualStyleBackColor = False
         '
         'ListingForm

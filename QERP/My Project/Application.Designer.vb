@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.QERP.OrderLineListingForm
+            Me.MainForm = Global.QERP.PartForm
         End Sub
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _

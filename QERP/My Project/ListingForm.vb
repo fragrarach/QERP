@@ -3,26 +3,7 @@
     Protected Shadows ParentForm As PartForm
     Protected Shadows Table As String
 
-    Public Sub New()
-        InitializeComponent()
-        Me.KeyPreview = True
-    End Sub
-
-    Public Sub New(ByRef ParentFormArg As Form)
-        InitializeComponent()
-        Me.KeyPreview = True
-        ParentForm = ParentFormArg
-    End Sub
-
-    Public Sub New(ByRef ParentFormArg As Form, ByRef MdiFormArg As Form)
-        InitializeComponent()
-        Me.KeyPreview = True
-        Me.Owner = MdiFormArg
-        Me.MdiParent = MdiFormArg
-        ParentForm = ParentFormArg
-    End Sub
-
-    Private Sub ListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Overridable Sub ListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         If ParentForm IsNot Nothing Then
             Me.Location = PositioningMethods.CenterToCenter(Me, ParentForm)
@@ -61,7 +42,7 @@
 
 
         If Record IsNot Nothing Then
-            DataGridView.Rows.Clear()
+            'DataGridView.Rows.Clear()
             DataGridView.Columns.Clear()
 
             Dim Max As Int32 = (UBound(Record, 2) + 1)
@@ -120,12 +101,12 @@
         SearchFieldGroupBox.Text = "Search Field : " & DataGridView.SortedColumn.HeaderText
     End Sub
 
-    Private Sub LoadCount()
+    Public Sub LoadCount()
         Dim Count As String = CountQueryBuilder()
         CountToolStripTextBox.Text = Count + " Records"
     End Sub
 
-    Private Sub Search(ByRef TextBoxRef As TextBox, Optional ExactMatch As Boolean = False)
+    Public Sub Search(ByRef TextBoxRef As TextBox, Optional ExactMatch As Boolean = False)
 
         If TextBoxRef.Text IsNot Nothing Then
 

@@ -11,6 +11,7 @@
         }
 
     Shadows ParentForm As PartForm
+    Shadows FormInitialized As Boolean
 
     Public Sub New()
         InitializeComponent()
@@ -31,89 +32,123 @@
         ParentForm = ParentFormArg
     End Sub
 
-    Private Sub PartListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Overrides Sub ListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Not (FormInitialized) Then
+            FormInitialized = True
 
-        If ParentForm IsNot Nothing Then
-            Me.Location = PositioningMethods.CenterToCenter(Me, ParentForm)
-        End If
+            If ParentForm IsNot Nothing Then
+                Me.Location = PositioningMethods.CenterToCenter(Me, ParentForm)
+            Else
+                Me.CenterToScreen()
+            End If
 
-        Dim ActivePartsHost As New ToolStripControlHost(ActivePartsCheckBox)
-        PartListingToolStrip.Items.Add(ActivePartsHost)
+            Dim ActivePartsHost As New ToolStripControlHost(ActivePartsCheckBox)
+            PartListingToolStrip.Items.Add(ActivePartsHost)
 
-        Dim ToolStripSeparator2 As New ToolStripSeparator
-        PartListingToolStrip.Items.Add(ToolStripSeparator2)
+            Dim ToolStripSeparator2 As New ToolStripSeparator
+            PartListingToolStrip.Items.Add(ToolStripSeparator2)
 
-        Dim KeepOpenHost As New ToolStripControlHost(KeepOpenCheckBox)
-        PartListingToolStrip.Items.Add(KeepOpenHost)
+            Dim KeepOpenHost As New ToolStripControlHost(KeepOpenCheckBox)
+            PartListingToolStrip.Items.Add(KeepOpenHost)
 
-        LoadPartCount()
+            LoadCount()
 
-        LoadColumns()
+            Dim RecordBinding As BindingSource = LoadListingData(Me)
 
-        LoadListingData(Me)
+            LoadColumns(RecordBinding)
 
-        If ParentForm.GetType() Is GetType(PartForm) Then
-            If ParentForm.SelectedPartTextBox.Text IsNot Nothing Then
-                PartSearch(ParentForm.SelectedPartTextBox, True)
+            If Not IsNothing(ParentForm) Then
+                If ParentForm.GetType() Is GetType(PartForm) Then
+                    If ParentForm.SelectedPartTextBox.Text IsNot Nothing Then
+                        Search(ParentForm.SelectedPartTextBox, True)
+                    End If
+                End If
             End If
         End If
-
     End Sub
 
-    Public Sub LoadColumns()
+    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+        Dim ColumnIndex As Int16 = 0
 
-        PartListDataGridView.Columns.Clear()
+        Me.DataGridView.DataSource = RecordBinding
 
-        PartListDataGridView.RowHeadersWidth = 20
+        Me.DataGridView.RowHeadersWidth = 20
 
-        PartListDataGridView.Columns.Add("Column1", "Part Number")
-        PartListDataGridView.Columns("Column1").Width = 112
-        PartListDataGridView.Columns("Column1").Frozen = True
+        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+        Me.DataGridView.Columns(ColumnIndex).Width = 112
+        Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
         If PartListingConfig.ActiveColumns(0) = True Then
-            PartListDataGridView.Columns.Add("Column2", "French Description")
-            PartListDataGridView.Columns("Column2").Width = 365
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "French Description"
+            Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
+
         If PartListingConfig.ActiveColumns(1) = True Then
-            PartListDataGridView.Columns.Add("Column3", "English Description")
-            PartListDataGridView.Columns("Column3").Width = 365
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "English Description"
+            Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
+
         If PartListingConfig.ActiveColumns(2) = True Then
-            PartListDataGridView.Columns.Add("Column4", "Internal Description")
-            PartListDataGridView.Columns("Column4").Width = 365
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Internal Description"
+            Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
+
         If PartListingConfig.ActiveColumns(3) = True Then
-            PartListDataGridView.Columns.Add("Column5", "Sort Key")
-            PartListDataGridView.Columns("Column5").Width = 75
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Sort Key"
+            Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
+
         If PartListingConfig.ActiveColumns(4) = True Then
-            PartListDataGridView.Columns.Add("Column6", "Part Type")
-            PartListDataGridView.Columns("Column6").Width = 75
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Type"
+            Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
+
         If PartListingConfig.ActiveColumns(5) = True Then
-            PartListDataGridView.Columns.Add("Column7", "Group #")
-            PartListDataGridView.Columns("Column7").Width = 75
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Group #"
+            Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
+
         If PartListingConfig.ActiveColumns(6) = True Then
-            PartListDataGridView.Columns.Add("Column8", "UPC #")
-            PartListDataGridView.Columns("Column8").Width = 75
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "UPC #"
+            Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
+
         If PartListingConfig.ActiveColumns(7) = True Then
-            PartListDataGridView.Columns.Add("Column9", "Location")
-            PartListDataGridView.Columns("Column9").Width = 100
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Location"
+            Me.DataGridView.Columns(ColumnIndex).Width = 100
         End If
 
         Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
         For i = 0 To UserColumns.Count - 1
             If PartListingConfig.ActiveColumns(9 + i) = True Then
-                PartListDataGridView.Columns.Add("Column" & (9 + i), UserColumns(i))
-                PartListDataGridView.Columns("Column" & (9 + i)).Width = 120
+                ColumnIndex += 1
+                Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+                Me.DataGridView.Columns(ColumnIndex).HeaderText = UserColumns(i)
+                Me.DataGridView.Columns(ColumnIndex).Width = 120
             End If
         Next
 
+
     End Sub
 
-    Private Function CountQueryBuilder()
+    Public Overrides Function CountQueryBuilder() As Object
         Dim Query As String = "SELECT COUNT(*) FROM part "
 
         If ActivePartsCheckBox.Checked = False Then
@@ -121,11 +156,11 @@
         End If
 
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        Dim PartCount As String = Record(0, 0)
-        Return PartCount
+        Dim Count As String = Record(0, 0)
+        Return Count
     End Function
 
-    Private Function ListingQueryBuilder()
+    Public Overrides Function ListingQueryBuilder() As Object
         Dim Query As String = "SELECT p.prt_no"
 
         If PartListingConfig.ActiveColumns(0) = True Then
@@ -172,44 +207,12 @@
         Query += "ORDER BY p.prt_no"
 
         Return Query
-
     End Function
 
-    Public Sub LoadListingData(ByRef ParentForm As Form)
-        Console.WriteLine("LOAD START " + TimeString)
-        Dim Query As String = ListingQueryBuilder()
-        Dim Record As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-
-        If Record IsNot Nothing Then
-            PartListDataGridView.Rows.Clear()
-
-            Dim Max As Int16 = (UBound(Record, 2) + 1)
-            Dim LoadingText As String = "Loading Parts - "
-            LoadingForm.LoadingBarInit(Max, LoadingText, ParentForm)
-
-            For RowIndex = 0 To UBound(Record, 2)
-                PartListDataGridView.Rows.Add()
-                For ColumnIndex = 0 To UBound(Record, 1)
-                    If TypeOf Record(ColumnIndex, RowIndex) Is String Then
-                        PartListDataGridView.Item(ColumnIndex, RowIndex).Value = Trim(Record(ColumnIndex, RowIndex))
-                    Else
-                        PartListDataGridView.Item(ColumnIndex, RowIndex).Value = Record(ColumnIndex, RowIndex)
-                    End If
-                Next
-                LoadingForm.LoadingBarIncrement()
-            Next
-            LoadingForm.Close()
-
-        End If
-
-        ExtensionMethods.DoubleBuffered(Me.PartListDataGridView, True)
-        Console.WriteLine("LOAD FINISH " + TimeString)
-    End Sub
-
-    Private Sub PartListDataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles PartListDataGridView.CellDoubleClick
+    Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         If ParentForm.GetType() Is GetType(PartForm) Then
             If e.ColumnIndex = 0 Then
-                ParentForm.SelectedPartTextBox.Text = PartListDataGridView.Item(0, e.RowIndex).Value
+                ParentForm.SelectedPartTextBox.Text = Me.DataGridView.Item(0, e.RowIndex).Value
                 If KeepOpenCheckBox.Checked = False Then
                     Me.Close()
                 End If
@@ -217,73 +220,14 @@
         End If
     End Sub
 
-    Private Sub PartListSearchTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles PartListSearchTextBox.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            PartSearch(PartListSearchTextBox)
-            e.SuppressKeyPress = True
-        End If
-    End Sub
-
-    Private Sub PartListDataGridView_Sorted(sender As Object, e As EventArgs) Handles PartListDataGridView.Sorted
-        SearchFieldGroupBox.Text = "Search Field : " & PartListDataGridView.SortedColumn.HeaderText
-    End Sub
-
-    Private Sub LoadPartCount()
-        Dim PartCount As String = CountQueryBuilder()
-        PartCountToolStripTextBox.Text = PartCount + " Records"
+    Public Overrides Sub ColumnConfigButton_Click(sender As Object, e As EventArgs)
+        Dim MyConfig As New PartListingConfigForm(Me)
+        MyConfig.ShowDialog()
     End Sub
 
     Private Sub ActivePartsCheckBox_CheckStateChanged(sender As Object, e As EventArgs) Handles ActivePartsCheckBox.CheckStateChanged
-        LoadListingData(Me)
-        LoadPartCount()
-    End Sub
-
-    Private Sub PartSearch(ByRef TextBoxRef As TextBox, Optional ExactMatch As Boolean = False)
-
-        If TextBoxRef.Text IsNot Nothing Then
-
-            Dim SearchTerm As String
-            If ExactMatch = False Then
-                SearchTerm = "*" & UCase(TextBoxRef.Text) & "*"
-            Else
-                SearchTerm = TextBoxRef.Text
-            End If
-
-            Dim ColumnIndex As Int16
-            If PartListDataGridView.SortedColumn Is Nothing Then
-                ColumnIndex = 0
-            Else
-                ColumnIndex = PartListDataGridView.SortedColumn.Index
-            End If
-
-            While 1
-                For RowIndex = PartListDataGridView.CurrentRow.Index + 1 To PartListDataGridView.RowCount - 1
-                    If PartListDataGridView.Item(ColumnIndex, RowIndex).Value Like SearchTerm Then
-                        PartListDataGridView.ClearSelection()
-                        PartListDataGridView.Item(ColumnIndex, RowIndex).Selected = True
-                        PartListDataGridView.FirstDisplayedScrollingRowIndex = PartListDataGridView.CurrentRow.Index
-                        Exit While
-                    End If
-                Next
-                For RowIndex = 0 To PartListDataGridView.CurrentRow.Index - 1
-                    If PartListDataGridView.Item(ColumnIndex, RowIndex).Value Like SearchTerm Then
-                        PartListDataGridView.ClearSelection()
-                        PartListDataGridView.Item(ColumnIndex, RowIndex).Selected = True
-                        PartListDataGridView.FirstDisplayedScrollingRowIndex = PartListDataGridView.CurrentRow.Index
-                        Exit While
-                    End If
-                Next
-                Exit While
-            End While
-
-        End If
-    End Sub
-
-    Private Sub ColumnConfigButton_Click(sender As Object, e As EventArgs) Handles ColumnConfigButton.Click
-        PartListingConfigForm.ShowDialog()
-    End Sub
-
-    Private Sub PartListingForm_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
-        If e.KeyCode = Keys.Escape Then Me.Close()
+        Dim RecordBinding As BindingSource = LoadListingData(Me)
+        LoadColumns(RecordBinding)
+        LoadCount()
     End Sub
 End Class

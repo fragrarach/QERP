@@ -1,4 +1,13 @@
 ﻿Public Class PartListingConfigForm
+
+    Protected Shadows ParentForm As PartListingForm
+
+    Public Sub New(ByRef ParentFormArg As Form)
+        InitializeComponent()
+        Me.KeyPreview = True
+        ParentForm = ParentFormArg
+    End Sub
+
     Private Sub PartListingConfigForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
         For i = 0 To UserColumns.Count - 1
@@ -23,8 +32,8 @@
 
     Private Sub SaveConfigButton_Click(sender As Object, e As EventArgs) Handles SaveConfigButton.Click
         SaveConfig()
-        PartListingForm.LoadColumns()
-        PartListingForm.LoadListingData(Me)
+        Dim RecordBinding As BindingSource = ParentForm.LoadListingData(Me)
+        ParentForm.LoadColumns(RecordBinding)
         Me.Close()
     End Sub
 
