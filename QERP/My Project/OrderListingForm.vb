@@ -1,10 +1,14 @@
-﻿Public Class OrderListingForm
+﻿Public Class OrderListingFormNew
     Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
         Dim ColumnIndex As Int16 = 0
 
         Me.DataGridView.DataSource = RecordBinding
 
         Me.DataGridView.RowHeadersWidth = 20
+
+        For i = 0 To Me.DataGridView.Columns.Count - 1
+            Me.DataGridView.Columns(i).ReadOnly = True
+        Next
 
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
         Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Number"

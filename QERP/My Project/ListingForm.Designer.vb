@@ -147,7 +147,6 @@ Partial Class ListingForm
         Me.DataGridView.Location = New System.Drawing.Point(5, 41)
         Me.DataGridView.MultiSelect = False
         Me.DataGridView.Name = "DataGridView"
-        Me.DataGridView.ReadOnly = True
         Me.DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView.Size = New System.Drawing.Size(615, 317)

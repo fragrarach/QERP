@@ -68,8 +68,6 @@
                 RecordTable.Rows.Add(RecordRow)
                 LoadingForm.LoadingBarIncrement()
             Next
-
-
             LoadingForm.Close()
         End If
 

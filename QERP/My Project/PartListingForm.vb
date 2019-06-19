@@ -74,6 +74,10 @@
 
         Me.DataGridView.RowHeadersWidth = 20
 
+        For i = 0 To Me.DataGridView.Columns.Count - 1
+            Me.DataGridView.Columns(i).ReadOnly = True
+        Next
+
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
         Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
         Me.DataGridView.Columns(ColumnIndex).Width = 112

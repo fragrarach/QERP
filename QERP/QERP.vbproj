@@ -214,16 +214,16 @@
     </Compile>
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
-    <Compile Include="My Project\ListingFormTest.Designer.vb">
-      <DependentUpon>ListingFormTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\ListingFormTest.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\OrderLineListingForm.Designer.vb">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </Compile>
     <Compile Include="My Project\OrderLineListingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\PLQListingForm.Designer.vb">
+      <DependentUpon>PLQListingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\PLQListingForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\PartListingForm.Designer.vb">
@@ -269,12 +269,6 @@
     <Compile Include="My Project\ListingForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="My Project\PLQListingForm.Designer.vb">
-      <DependentUpon>PLQListingForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\PLQListingForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\PositioningMethods.vb" />
     <Compile Include="My Project\PostgresMethods.vb" />
     <Compile Include="My Project\PartForm.Designer.vb">
@@ -301,11 +295,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="My Project\ListingFormTest.resx">
-      <DependentUpon>ListingFormTest.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\PLQListingForm.resx">
+      <DependentUpon>PLQListingForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PartListingForm.resx">
       <DependentUpon>PartListingForm.vb</DependentUpon>
@@ -327,9 +321,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\ListingForm.resx">
       <DependentUpon>ListingForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="My Project\PLQListingForm.resx">
-      <DependentUpon>PLQListingForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PartForm.resx">
       <DependentUpon>PartForm.vb</DependentUpon>
