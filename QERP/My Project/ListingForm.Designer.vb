@@ -202,7 +202,7 @@ Partial Class ListingForm
     Friend WithEvents SearchFieldGroupBox As GroupBox
     Friend WithEvents SearchTextBox As TextBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents DataGridView As DataGridView
     Friend WithEvents ColumnConfigButton As Button
     Friend WithEvents Button2 As Button
+    Public WithEvents DataGridView As DataGridView
 End Class

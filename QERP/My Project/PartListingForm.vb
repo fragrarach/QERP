@@ -79,72 +79,73 @@
         Next
 
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
         Me.DataGridView.Columns(ColumnIndex).Width = 112
         Me.DataGridView.Columns(ColumnIndex).Frozen = True
+
 
         If PartListingConfig.ActiveColumns(0) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "French Description"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
 
         If PartListingConfig.ActiveColumns(1) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "English Description"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
 
         If PartListingConfig.ActiveColumns(2) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Internal Description"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
         End If
 
         If PartListingConfig.ActiveColumns(3) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Sort Key"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
 
         If PartListingConfig.ActiveColumns(4) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Type"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
 
         If PartListingConfig.ActiveColumns(5) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Group #"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
 
         If PartListingConfig.ActiveColumns(6) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "UPC #"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
         End If
 
         If PartListingConfig.ActiveColumns(7) = True Then
             ColumnIndex += 1
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Location"
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 100
         End If
 
         Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
         For i = 0 To UserColumns.Count - 1
-            If PartListingConfig.ActiveColumns(9 + i) = True Then
+            If PartListingConfig.ActiveColumns(8 + i) = True Then
                 ColumnIndex += 1
                 Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-                Me.DataGridView.Columns(ColumnIndex).HeaderText = UserColumns(i)
+                Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
                 Me.DataGridView.Columns(ColumnIndex).Width = 120
             End If
         Next
@@ -195,7 +196,7 @@
         Dim k As Int16 = 1
         For i = 1 To 3
             For j = 1 To 5
-                If PartListingConfig.ActiveColumns(8 + k) = True Then
+                If PartListingConfig.ActiveColumns(7 + k) = True Then
                     Query += ", p.prt_idx" & i & "_" & j
                 End If
                 k += 1
@@ -214,11 +215,13 @@
     End Function
 
     Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
-        If ParentForm.GetType() Is GetType(PartForm) Then
-            If e.ColumnIndex = 0 Then
-                ParentForm.SelectedPartTextBox.Text = Me.DataGridView.Item(0, e.RowIndex).Value
-                If KeepOpenCheckBox.Checked = False Then
-                    Me.Close()
+        If Not IsNothing(ParentForm) Then
+            If ParentForm.GetType() Is GetType(PartForm) Then
+                If e.ColumnIndex = 0 Then
+                    ParentForm.SelectedPartTextBox.Text = Me.DataGridView.Item(0, e.RowIndex).Value
+                    If KeepOpenCheckBox.Checked = False Then
+                        Me.Close()
+                    End If
                 End If
             End If
         End If

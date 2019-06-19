@@ -214,10 +214,22 @@
     </Compile>
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
+    <Compile Include="My Project\PartListingConfigForm.Designer.vb">
+      <DependentUpon>PartListingConfigForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\PartListingConfigForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\OrderLineListingForm.Designer.vb">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </Compile>
     <Compile Include="My Project\OrderLineListingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\ListingConfigForm.Designer.vb">
+      <DependentUpon>ListingConfigForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\ListingConfigForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\PLQListingForm.Designer.vb">
@@ -251,12 +263,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\PartListingConfig.vb" />
-    <Compile Include="My Project\PartListingConfigForm.Designer.vb">
-      <DependentUpon>PartListingConfigForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\PartListingConfigForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\LoadingForm.Designer.vb">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </Compile>
@@ -298,6 +304,12 @@
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\ListingConfigForm.resx">
+      <DependentUpon>ListingConfigForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\PartListingConfigForm.resx">
+      <DependentUpon>PartListingConfigForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\PLQListingForm.resx">
       <DependentUpon>PLQListingForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -315,9 +327,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="My Project\PartListingConfigForm.resx">
-      <DependentUpon>PartListingConfigForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\ListingForm.resx">
       <DependentUpon>ListingForm.vb</DependentUpon>

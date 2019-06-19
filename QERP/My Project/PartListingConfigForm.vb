@@ -1,26 +1,37 @@
 ﻿Public Class PartListingConfigForm
 
-    Protected Shadows ParentForm As PartListingForm
+    Public Sub New()
+        InitializeComponent()
+        Me.KeyPreview = True
+    End Sub
 
-    Public Sub New(ByRef ParentFormArg As Form)
+    Public Sub New(ByRef ParentFormArg)
         InitializeComponent()
         Me.KeyPreview = True
         ParentForm = ParentFormArg
     End Sub
 
-    Private Sub PartListingConfigForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
-        For i = 0 To UserColumns.Count - 1
-            ColumnDisplayListView.Items(i + 8).Text = UserColumns(i)
-        Next
-        For i = 0 To ColumnDisplayListView.Items.Count - 1
-            If PartListingConfig.ActiveColumns(i) = True Then
-                ColumnDisplayListView.Items(i).Checked = True
+    Shadows FormInitialized As Boolean
+
+    Public Overrides Sub ListingConfigForm_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not (FormInitialized) Then
+            FormInitialized = True
+
+            If Not IsNothing(ParentForm) Then
+                For ColumnIndex = 1 To PartListingConfig.ColumnNames.Count - 1
+                    ColumnDisplayListView.Items.Add(PartListingConfig.ColumnNames(ColumnIndex))
+                Next
             End If
-        Next
+
+            For i = 0 To ColumnDisplayListView.Items.Count - 1
+                If PartListingConfig.ActiveColumns(i) = True Then
+                    ColumnDisplayListView.Items(i).Checked = True
+                End If
+            Next
+        End If
     End Sub
 
-    Private Sub SaveConfig()
+    Public Overrides Sub SaveConfig()
         For i = 0 To ColumnDisplayListView.Items.Count - 1
             If ColumnDisplayListView.Items(i).Checked = True Then
                 PartListingConfig.ActiveColumns(i) = True
@@ -30,22 +41,4 @@
         Next
     End Sub
 
-    Private Sub SaveConfigButton_Click(sender As Object, e As EventArgs) Handles SaveConfigButton.Click
-        SaveConfig()
-        Dim RecordBinding As BindingSource = ParentForm.LoadListingData(Me)
-        ParentForm.LoadColumns(RecordBinding)
-        Me.Close()
-    End Sub
-
-    Private Sub CheckBoxOnButton_Click(sender As Object, e As EventArgs) Handles CheckBoxOnButton.Click
-        For i = 0 To ColumnDisplayListView.Items.Count - 1
-            ColumnDisplayListView.Items(i).Checked = True
-        Next
-    End Sub
-
-    Private Sub CheckBoxOffButton_Click(sender As Object, e As EventArgs) Handles CheckBoxOffButton.Click
-        For i = 0 To ColumnDisplayListView.Items.Count - 1
-            ColumnDisplayListView.Items(i).Checked = False
-        Next
-    End Sub
 End Class
