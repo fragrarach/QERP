@@ -32,6 +32,7 @@
         Copyright.Text = My.Application.Info.Copyright
 
         PartListingConfig.PartListingConfigInit()
+        PLQListingConfig.PLQListingConfigInit()
     End Sub
 
 End Class

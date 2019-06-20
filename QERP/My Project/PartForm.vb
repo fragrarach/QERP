@@ -66,7 +66,7 @@ Public Class PartForm
             SequenceTextBox.Text = Trim(Record(9, 0))
             LabelsPerPartTextBox.Text = Trim(Record(10, 0))
             PartsPerPackageTextBox.Text = Trim(Record(11, 0))
-            InvoicePackagesCheckBox.Text = Trim(Record(12, 0))
+            InvoicePackagesCheckBox.Checked = Trim(Record(12, 0))
             CreationDateTextBox.Text = Trim(Record(13, 0))
             MinimumProfitTextBox.Text = Trim(Record(14, 0))
             GTINPartNumberTextBox.Text = Trim(Record(15, 0))
@@ -91,16 +91,16 @@ Public Class PartForm
         Dim Query As String = "SELECT * FROM part_form_prices WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
 
-        If Record IsNot Nothing Then
-            PriceDataGridView.Rows.Clear()
+        PriceDataGridView.Rows.Clear()
             For RowIndex = 0 To 4
                 PriceDataGridView.Rows.Add()
-                For ColumnIndex = 0 To 14
+            For ColumnIndex = 0 To 14
+                If Record IsNot Nothing Then
                     PriceDataGridView.Item(ColumnIndex, RowIndex).Value = Record(ColumnIndex + 1, RowIndex)
-                Next
+                End If
             Next
-            FormatLoadPriceDataGridViewRows()
-        End If
+        Next
+        FormatLoadPriceDataGridViewRows()
     End Sub
 
     Private Sub FormatLoadPriceDataGridViewHeaders()
@@ -128,8 +128,8 @@ Public Class PartForm
     End Sub
 
     Private Sub PartSearch()
-        Dim PartSearch As String = PartSearchTextBox.Text.ToUpper
-        Dim Query As String = "SELECT prt_no FROM part WHERE prt_active = TRUE AND prt_no ='" & PartSearch & "'"
+        Dim PartSearch As String = Trim(PartSearchTextBox.Text.ToUpper)
+        Dim Query As String = "SELECT prt_no FROM part WHERE prt_no ='" & PartSearch & "'"
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
 
         If Record IsNot Nothing Then

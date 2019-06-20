@@ -67,10 +67,12 @@
         End If
     End Sub
 
-    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+    Public Overrides Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
         Dim ColumnIndex As Int16 = 0
 
-        Me.DataGridView.DataSource = RecordBinding
+        If Not IsNothing(RecordBinding) Then
+            Me.DataGridView.DataSource = RecordBinding
+        End If
 
         Me.DataGridView.RowHeadersWidth = 20
 
@@ -89,6 +91,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(1) = True Then
@@ -96,6 +102,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(2) = True Then
@@ -103,6 +113,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(3) = True Then
@@ -110,6 +124,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(4) = True Then
@@ -117,6 +135,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(5) = True Then
@@ -124,6 +146,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(6) = True Then
@@ -131,6 +157,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         If PartListingConfig.ActiveColumns(7) = True Then
@@ -138,6 +168,10 @@
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 100
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
@@ -147,6 +181,10 @@
                 Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
                 Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
                 Me.DataGridView.Columns(ColumnIndex).Width = 120
+                Me.DataGridView.Columns(ColumnIndex).Visible = True
+            Else
+                ColumnIndex += 1
+                Me.DataGridView.Columns(ColumnIndex).Visible = False
             End If
         Next
 
@@ -168,37 +206,28 @@
     Public Overrides Function ListingQueryBuilder() As Object
         Dim Query As String = "SELECT p.prt_no"
 
-        If PartListingConfig.ActiveColumns(0) = True Then
-            Query += ", p.prt_desc1"
-        End If
-        If PartListingConfig.ActiveColumns(1) = True Then
-            Query += ", p.prt_desc2"
-        End If
-        If PartListingConfig.ActiveColumns(2) = True Then
-            Query += ", p.prt_desc3"
-        End If
-        If PartListingConfig.ActiveColumns(3) = True Then
-            Query += ", p.prt_sort"
-        End If
-        If PartListingConfig.ActiveColumns(4) = True Then
-            Query += ", p.prt_type"
-        End If
-        If PartListingConfig.ActiveColumns(5) = True Then
-            Query += ", pg.pgr_no"
-        End If
-        If PartListingConfig.ActiveColumns(6) = True Then
-            Query += ", p.prt_upc"
-        End If
-        If PartListingConfig.ActiveColumns(7) = True Then
-            Query += ", p.prt_location"
-        End If
+
+        Query += ", p.prt_desc1"
+
+        Query += ", p.prt_desc2"
+
+        Query += ", p.prt_desc3"
+
+        Query += ", p.prt_sort"
+
+        Query += ", p.prt_type"
+
+        Query += ", pg.pgr_no"
+
+        Query += ", p.prt_upc"
+
+        Query += ", p.prt_location"
+
 
         Dim k As Int16 = 1
         For i = 1 To 3
             For j = 1 To 5
-                If PartListingConfig.ActiveColumns(7 + k) = True Then
-                    Query += ", p.prt_idx" & i & "_" & j
-                End If
+                Query += ", p.prt_idx" & i & "_" & j
                 k += 1
             Next
         Next

@@ -214,6 +214,13 @@
     </Compile>
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
+    <Compile Include="My Project\PLQListingConfigForm.Designer.vb">
+      <DependentUpon>PLQListingConfigForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\PLQListingConfigForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\PLQListingConfig.vb" />
     <Compile Include="My Project\PartListingConfigForm.Designer.vb">
       <DependentUpon>PartListingConfigForm.vb</DependentUpon>
     </Compile>
@@ -306,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\ListingConfigForm.resx">
       <DependentUpon>ListingConfigForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\PLQListingConfigForm.resx">
+      <DependentUpon>PLQListingConfigForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PartListingConfigForm.resx">
       <DependentUpon>PartListingConfigForm.vb</DependentUpon>

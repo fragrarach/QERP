@@ -9,20 +9,14 @@
     Shadows FormInitialized As Boolean
 
     Public Sub New()
-
-        ' This call is required by the designer.
         InitializeComponent()
         Me.KeyPreview = True
-
     End Sub
 
     Public Sub New(ByRef ParentFormArg As Form)
-
-        ' This call is required by the designer.
         InitializeComponent()
         Me.KeyPreview = True
         ParentForm = ParentFormArg
-
     End Sub
 
     Public Overrides Sub ListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -53,10 +47,12 @@
         End If
     End Sub
 
-    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+    Public Overrides Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
         Dim ColumnIndex As Int16 = 0
 
-        Me.DataGridView.DataSource = RecordBinding
+        If Not IsNothing(RecordBinding) Then
+            Me.DataGridView.DataSource = RecordBinding
+        End If
 
         Me.DataGridView.RowHeadersWidth = 20
 
@@ -65,92 +61,176 @@
         Next
 
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Planning Lot Number"
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = PLQListingConfig.ColumnNames(ColumnIndex)
         Me.DataGridView.Columns(ColumnIndex).Width = 112
         Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Created"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Status"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Number"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Required Date"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Description"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Required Quantity"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Transferred Quantity"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Quantity to Produce"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Production Date"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Produced Quantity"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
-
-        ColumnIndex += 1
-        Me.DataGridView.Columns.RemoveAt(ColumnIndex)
-        Dim ComboBoxColumn1 As New DataGridViewComboBoxColumn With {
-            .Name = ColumnIndex,
-            .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
-            .HeaderText = "Builder",
-            .ReadOnly = False
-        }
-        ComboBoxColumn1.DataPropertyName = ColumnIndex
-        Dim Query As String = "SELECT emp_name FROM employee"
-        Dim Record As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        If Record IsNot Nothing Then
-            For RowIndex = 0 To UBound(Record, 2)
-                ComboBoxColumn1.Items.Add(Trim(Record(0, RowIndex)))
-            Next
+        If PLQListingConfig.ActiveColumns(0) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = PLQListingConfig.ColumnNames(ColumnIndex)
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
-        Me.DataGridView.Columns.Insert(ColumnIndex, ComboBoxColumn1)
+
+        If PLQListingConfig.ActiveColumns(1) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Status"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(2) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Number"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(3) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(4) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Required Date"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(5) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(6) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Description"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(7) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Required Quantity"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(8) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Transferred Quantity"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(9) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Quantity to Produce"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(10) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Production Date"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(11) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Produced Quantity"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(12) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Note"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
+
+        If PLQListingConfig.ActiveColumns(13) = True Then
+            ColumnIndex += 1
+            Me.DataGridView.Columns.RemoveAt(ColumnIndex)
+            Dim ComboBoxColumn1 As New DataGridViewComboBoxColumn With {
+                .Name = ColumnIndex,
+                .HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell,
+                .HeaderText = "Builder",
+                .ReadOnly = False
+            }
+            ComboBoxColumn1.DataPropertyName = ColumnIndex
+            Dim Query As String = "SELECT emp_name FROM employee"
+            Dim Record As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+            If Record IsNot Nothing Then
+                For RowIndex = 0 To UBound(Record, 2)
+                    ComboBoxColumn1.Items.Add(Trim(Record(0, RowIndex)))
+                Next
+            End If
+            Me.DataGridView.Columns.Insert(ColumnIndex, ComboBoxColumn1)
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
+        Else
+            ColumnIndex += 1
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
 
         ColumnIndex += 1
         Me.DataGridView.Columns(ColumnIndex).Visible = False
@@ -222,6 +302,7 @@
     End Sub
 
     Public Overrides Sub ColumnConfigButton_Click(sender As Object, e As EventArgs)
-
+        Dim MyConfig As New PLQListingConfigForm(Me)
+        MyConfig.ShowDialog()
     End Sub
 End Class

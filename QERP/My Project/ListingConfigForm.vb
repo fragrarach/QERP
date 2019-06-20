@@ -13,8 +13,7 @@
 
     Private Sub SaveConfigButton_Click(sender As Object, e As EventArgs) Handles SaveConfigButton.Click
         SaveConfig()
-        Dim RecordBinding As BindingSource = ParentForm.LoadListingData(Me)
-        ParentForm.LoadColumns(RecordBinding)
+        ParentForm.LoadColumns()
         Me.Close()
     End Sub
 

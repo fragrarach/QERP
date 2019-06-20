@@ -1,5 +1,5 @@
 ﻿Public Class OrderLineListingForm
-    Public Overrides Sub LoadColumns(RecordBinding As BindingSource)
+    Public Overrides Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
         Dim ColumnIndex As Int16 = 0
 
         Me.DataGridView.DataSource = RecordBinding

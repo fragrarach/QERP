@@ -19,7 +19,7 @@
 
     End Sub
 
-    Public Overridable Sub LoadColumns(RecordBinding As BindingSource)
+    Public Overridable Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
 
     End Sub
 

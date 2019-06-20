@@ -575,7 +575,9 @@ Partial Class PartForm
         '
         'ManageLotsCheckBox
         '
+        Me.ManageLotsCheckBox.AutoCheck = False
         Me.ManageLotsCheckBox.AutoSize = True
+        Me.ManageLotsCheckBox.Enabled = False
         Me.ManageLotsCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.ManageLotsCheckBox.Location = New System.Drawing.Point(690, 319)
         Me.ManageLotsCheckBox.Name = "ManageLotsCheckBox"
@@ -586,7 +588,9 @@ Partial Class PartForm
         '
         'BOAllowedCheckBox
         '
+        Me.BOAllowedCheckBox.AutoCheck = False
         Me.BOAllowedCheckBox.AutoSize = True
+        Me.BOAllowedCheckBox.Enabled = False
         Me.BOAllowedCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.BOAllowedCheckBox.Location = New System.Drawing.Point(690, 292)
         Me.BOAllowedCheckBox.Name = "BOAllowedCheckBox"
@@ -597,7 +601,9 @@ Partial Class PartForm
         '
         'PrintStatisticsCheckBox
         '
+        Me.PrintStatisticsCheckBox.AutoCheck = False
         Me.PrintStatisticsCheckBox.AutoSize = True
+        Me.PrintStatisticsCheckBox.Enabled = False
         Me.PrintStatisticsCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.PrintStatisticsCheckBox.Location = New System.Drawing.Point(690, 266)
         Me.PrintStatisticsCheckBox.Name = "PrintStatisticsCheckBox"
@@ -608,7 +614,9 @@ Partial Class PartForm
         '
         'ActivePartCheckBox
         '
+        Me.ActivePartCheckBox.AutoCheck = False
         Me.ActivePartCheckBox.AutoSize = True
+        Me.ActivePartCheckBox.Enabled = False
         Me.ActivePartCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.ActivePartCheckBox.Location = New System.Drawing.Point(690, 241)
         Me.ActivePartCheckBox.Name = "ActivePartCheckBox"
@@ -619,7 +627,9 @@ Partial Class PartForm
         '
         'GeneratedPartCheckBox
         '
+        Me.GeneratedPartCheckBox.AutoCheck = False
         Me.GeneratedPartCheckBox.AutoSize = True
+        Me.GeneratedPartCheckBox.Enabled = False
         Me.GeneratedPartCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.GeneratedPartCheckBox.Location = New System.Drawing.Point(690, 216)
         Me.GeneratedPartCheckBox.Name = "GeneratedPartCheckBox"
@@ -630,6 +640,7 @@ Partial Class PartForm
         '
         'InvoicePackagesCheckBox
         '
+        Me.InvoicePackagesCheckBox.AutoCheck = False
         Me.InvoicePackagesCheckBox.AutoSize = True
         Me.InvoicePackagesCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.InvoicePackagesCheckBox.Location = New System.Drawing.Point(274, 268)
