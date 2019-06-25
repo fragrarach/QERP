@@ -23,35 +23,37 @@ Partial Class ListingForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ListingForm))
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.SearchButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.PartListingToolStrip = New System.Windows.Forms.ToolStrip()
-        Me.CountToolStripTextBox = New System.Windows.Forms.ToolStripTextBox()
+        Me.ListingToolStrip = New System.Windows.Forms.ToolStrip()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CountToolStripLabel = New System.Windows.Forms.ToolStripLabel()
         Me.SearchFieldGroupBox = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.SearchTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DataGridView = New System.Windows.Forms.DataGridView()
         Me.ColumnConfigButton = New System.Windows.Forms.Button()
-        Me.PartListingToolStrip.SuspendLayout()
+        Me.ListingToolStrip.SuspendLayout()
         Me.SearchFieldGroupBox.SuspendLayout()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Button1
+        'SearchButton
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLight
-        Me.Button1.Location = New System.Drawing.Point(4, 4)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(25, 25)
-        Me.Button1.TabIndex = 5
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.SearchButton.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.SearchButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight
+        Me.SearchButton.FlatAppearance.BorderSize = 0
+        Me.SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlLight
+        Me.SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlLight
+        Me.SearchButton.Image = Global.QERP.My.Resources.Resources.SEARCH_ICON
+        Me.SearchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.SearchButton.Location = New System.Drawing.Point(4, 4)
+        Me.SearchButton.Margin = New System.Windows.Forms.Padding(4)
+        Me.SearchButton.Name = "SearchButton"
+        Me.SearchButton.Size = New System.Drawing.Size(25, 25)
+        Me.SearchButton.TabIndex = 5
+        Me.SearchButton.UseVisualStyleBackColor = False
         '
         'Label2
         '
@@ -64,25 +66,25 @@ Partial Class ListingForm
         Me.Label2.Size = New System.Drawing.Size(625, 2)
         Me.Label2.TabIndex = 4
         '
-        'PartListingToolStrip
+        'ListingToolStrip
         '
-        Me.PartListingToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PartListingToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CountToolStripTextBox, Me.ToolStripSeparator1})
-        Me.PartListingToolStrip.Location = New System.Drawing.Point(1, 415)
-        Me.PartListingToolStrip.Name = "PartListingToolStrip"
-        Me.PartListingToolStrip.Size = New System.Drawing.Size(622, 25)
-        Me.PartListingToolStrip.TabIndex = 6
-        Me.PartListingToolStrip.Text = "ToolStrip1"
-        '
-        'CountToolStripTextBox
-        '
-        Me.CountToolStripTextBox.Name = "CountToolStripTextBox"
-        Me.CountToolStripTextBox.Size = New System.Drawing.Size(100, 25)
+        Me.ListingToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ListingToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CountToolStripLabel, Me.ToolStripSeparator1})
+        Me.ListingToolStrip.Location = New System.Drawing.Point(1, 415)
+        Me.ListingToolStrip.Name = "ListingToolStrip"
+        Me.ListingToolStrip.Size = New System.Drawing.Size(622, 25)
+        Me.ListingToolStrip.TabIndex = 6
+        Me.ListingToolStrip.Text = "ToolStrip1"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'CountToolStripLabel
+        '
+        Me.CountToolStripLabel.Name = "CountToolStripLabel"
+        Me.CountToolStripLabel.Size = New System.Drawing.Size(0, 22)
         '
         'SearchFieldGroupBox
         '
@@ -174,9 +176,9 @@ Partial Class ListingForm
         Me.Controls.Add(Me.DataGridView)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.SearchFieldGroupBox)
-        Me.Controls.Add(Me.PartListingToolStrip)
+        Me.Controls.Add(Me.ListingToolStrip)
         Me.Controls.Add(Me.ColumnConfigButton)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.SearchButton)
         Me.Controls.Add(Me.Label2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(400, 240)
@@ -184,8 +186,8 @@ Partial Class ListingForm
         Me.Padding = New System.Windows.Forms.Padding(1)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Part Listing"
-        Me.PartListingToolStrip.ResumeLayout(False)
-        Me.PartListingToolStrip.PerformLayout()
+        Me.ListingToolStrip.ResumeLayout(False)
+        Me.ListingToolStrip.PerformLayout()
         Me.SearchFieldGroupBox.ResumeLayout(False)
         Me.SearchFieldGroupBox.PerformLayout()
         CType(Me.DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -194,10 +196,9 @@ Partial Class ListingForm
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SearchButton As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents PartListingToolStrip As ToolStrip
-    Friend WithEvents CountToolStripTextBox As ToolStripTextBox
+    Friend WithEvents ListingToolStrip As ToolStrip
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents SearchFieldGroupBox As GroupBox
     Friend WithEvents SearchTextBox As TextBox
@@ -205,4 +206,5 @@ Partial Class ListingForm
     Friend WithEvents ColumnConfigButton As Button
     Friend WithEvents Button2 As Button
     Public WithEvents DataGridView As DataGridView
+    Friend WithEvents CountToolStripLabel As ToolStripLabel
 End Class

@@ -212,8 +212,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\SearchWord.vb" />
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
+    <Compile Include="My Project\SearchForm.Designer.vb">
+      <DependentUpon>SearchForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\SearchForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\PLQListingConfigForm.Designer.vb">
       <DependentUpon>PLQListingConfigForm.vb</DependentUpon>
     </Compile>
@@ -353,6 +360,9 @@
     <EmbeddedResource Include="My Project\QERPSplashScreen.resx">
       <DependentUpon>QERPSplashScreen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\SearchForm.resx">
+      <DependentUpon>SearchForm.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\app.manifest" />
@@ -417,6 +427,8 @@
     <None Include="Resources\CONFIGURE_ICON1.png" />
     <None Include="Resources\CHECK_BOX_ON_ICON.png" />
     <None Include="Resources\CHECK_BOX_OFF_ICON.png" />
+    <Content Include="Resources\Icon1.ico" />
+    <None Include="Resources\SEARCH_ICON.bmp" />
     <Content Include="SIGM_ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -1,4 +1,36 @@
 ﻿Public Class OrderLineListingForm
+
+    Dim WithEvents Test As New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+
+    Shadows ParentForm
+    Shadows OrderNumber
+
+    Public Sub New()
+        InitializeComponent()
+        Me.KeyPreview = True
+    End Sub
+
+    Public Sub New(ByRef ParentFormArg As Form)
+        InitializeComponent()
+        Me.KeyPreview = True
+        ParentForm = ParentFormArg
+    End Sub
+
+    Public Sub New(ByRef ParentFormArg As Form, ByVal OrderNumberArg As Int32)
+        InitializeComponent()
+        Me.KeyPreview = True
+        ParentForm = ParentFormArg
+        OrderNumber = OrderNumberArg
+    End Sub
+
+    Public Sub New(ByRef ParentFormArg As Form, ByRef MdiFormArg As Form)
+        InitializeComponent()
+        Me.KeyPreview = True
+        Me.Owner = MdiFormArg
+        Me.MdiParent = MdiFormArg
+        ParentForm = ParentFormArg
+    End Sub
+
     Public Overrides Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
         Dim ColumnIndex As Int16 = 0
 
@@ -126,7 +158,7 @@
 
         Query += "FROM order_line ol "
 
-        Query += "WHERE ol.ord_no = 66075 "
+        Query += "WHERE ol.ord_no = " & OrderNumber
 
         Query += "ORDER BY ol.orl_sort_idx "
 

@@ -27,6 +27,7 @@ Partial Class HomeForm
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PartsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanningBookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OrdersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -41,7 +42,7 @@ Partial Class HomeForm
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem, Me.OrdersToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.TestToolStripMenuItem.Text = "Modules"
@@ -57,6 +58,12 @@ Partial Class HomeForm
         Me.PlanningBookToolStripMenuItem.Name = "PlanningBookToolStripMenuItem"
         Me.PlanningBookToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PlanningBookToolStripMenuItem.Text = "Planning Book"
+        '
+        'OrdersToolStripMenuItem
+        '
+        Me.OrdersToolStripMenuItem.Name = "OrdersToolStripMenuItem"
+        Me.OrdersToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OrdersToolStripMenuItem.Text = "Orders"
         '
         'HomeForm
         '
@@ -81,4 +88,5 @@ Partial Class HomeForm
     Friend WithEvents TestToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PartsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PlanningBookToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OrdersToolStripMenuItem As ToolStripMenuItem
 End Class

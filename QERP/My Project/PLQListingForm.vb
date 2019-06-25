@@ -29,7 +29,7 @@
             End If
 
             Dim KeepOpenHost As New ToolStripControlHost(KeepOpenCheckBox)
-            PartListingToolStrip.Items.Add(KeepOpenHost)
+            ListingToolStrip.Items.Add(KeepOpenHost)
 
             LoadCount()
 

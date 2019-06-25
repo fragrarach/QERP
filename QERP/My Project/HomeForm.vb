@@ -14,4 +14,12 @@
         }
         PLQListingFormInstance.Show()
     End Sub
+
+    Private Sub OrdersToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrdersToolStripMenuItem.Click
+        Dim OrderListingFormInstance As New OrderListingForm(Me) With {
+            .Owner = Me,
+            .MdiParent = Me
+        }
+        OrderListingFormInstance.Show()
+    End Sub
 End Class

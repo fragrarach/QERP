@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class OrderListingFormNew
+Partial Class OrderListingForm
     Inherits ListingForm
 
     'Form overrides dispose to clean up the component list.

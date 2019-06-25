@@ -1,7 +1,8 @@
 ﻿Public Class ListingForm
 
-    Protected Shadows ParentForm As PartForm
+    Protected Shadows ParentForm
     Protected Shadows Table As String
+    Public WithEvents SearchWord As New SearchWord
 
     Public Overridable Sub ListingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -31,7 +32,7 @@
 
     End Function
 
-    Public Function LoadListingData(ByRef ParentForm As Form)
+    Public Function LoadListingData(ByRef Optional ParentForm As Form = Nothing)
         Console.WriteLine("LOAD START " + TimeString)
         Dim Query As String = ListingQueryBuilder()
         Dim Record As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
@@ -42,13 +43,15 @@
 
 
         If Record IsNot Nothing Then
-            'DataGridView.Rows.Clear()
             DataGridView.Columns.Clear()
 
             Dim Max As Int32 = (UBound(Record, 2) + 1)
-            'Change reference
             Dim LoadingText As String = "Loading - "
-            LoadingForm.LoadingBarInit(Max, LoadingText, ParentForm)
+            If Not IsNothing(ParentForm) Then
+                LoadingForm.LoadingBarInit(Max, LoadingText, ParentForm)
+            Else
+                LoadingForm.LoadingBarInit(Max, LoadingText)
+            End If
 
             For ColumnIndex = 0 To UBound(Record, 1)
                 RecordTable.Columns.Add(ColumnIndex)
@@ -101,7 +104,7 @@
 
     Public Sub LoadCount()
         Dim Count As String = CountQueryBuilder()
-        CountToolStripTextBox.Text = Count + " Records"
+        CountToolStripLabel.Text = Count + " Records"
     End Sub
 
     Public Sub Search(ByRef TextBoxRef As TextBox, Optional ExactMatch As Boolean = False)
@@ -152,4 +155,64 @@
     Private Sub ListingForm_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then Me.Close()
     End Sub
+
+    Private Sub SearchButton_Click(sender As Object, e As EventArgs) Handles SearchButton.Click
+        Dim MySearch As New SearchForm(Me) With {
+            .Owner = Me.Owner,
+            .MdiParent = Me.MdiParent
+        }
+        MySearch.Show()
+    End Sub
+
+    Private Sub SearchWordChanged(ByVal NewWord As String) Handles SearchWord.SearchWordChanged
+
+        ListingToolStrip.Items.Remove(ListingToolStrip.Items("SearchWordToolStripSeparator"))
+        ListingToolStrip.Items.Remove(ListingToolStrip.Items("SearchWordToolStripLabel"))
+
+        Dim RecordBinding As BindingSource = LoadListingData(Me)
+        LoadColumns(RecordBinding)
+
+        LoadCount()
+
+        SearchFormatDataGridView()
+
+        If NewWord <> "" Then
+            Dim SearchWordToolStripSeparator As New ToolStripSeparator With {
+                .Name = "SearchWordToolStripSeparator"
+            }
+            ListingToolStrip.Items.Add(SearchWordToolStripSeparator)
+
+            Dim SearchWordToolStripLabel As New ToolStripLabel With {
+                .Text = "Search Keyword : " & NewWord,
+                .Name = "SearchWordToolStripLabel"
+            }
+            ListingToolStrip.Items.Add(SearchWordToolStripLabel)
+        End If
+
+    End Sub
+
+    Private Sub Test(sender As Object, e As EventArgs) Handles DataGridView.Sorted
+        DataGridView.SuspendLayout()
+        SearchFormatDataGridView()
+        DataGridView.ResumeLayout()
+    End Sub
+
+    Private Sub SearchFormatDataGridView()
+        If SearchWord.Variable <> "" Then
+            Dim BoldFont As New Font(DataGridView.DefaultCellStyle.Font, FontStyle.Bold)
+            For i = 0 To Me.DataGridView.Columns.Count - 1
+                For j = 0 To Me.DataGridView.Rows.Count - 1
+                    If Me.DataGridView.Item(i, j).Style.Font Is BoldFont Then
+                        Me.DataGridView.Item(i, j).Style.Font = DataGridView.DefaultCellStyle.Font
+                    End If
+
+                    Dim CellValue As String = Me.DataGridView.Item(i, j).Value.ToString.ToUpper
+                    If CellValue.IndexOf(SearchWord.Variable.ToUpper) <> -1 Then
+                        Me.DataGridView.Item(i, j).Style.Font = BoldFont
+                    End If
+                Next
+            Next
+        End If
+    End Sub
+
 End Class

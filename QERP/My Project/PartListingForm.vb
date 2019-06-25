@@ -43,13 +43,13 @@
             End If
 
             Dim ActivePartsHost As New ToolStripControlHost(ActivePartsCheckBox)
-            PartListingToolStrip.Items.Add(ActivePartsHost)
+            ListingToolStrip.Items.Add(ActivePartsHost)
 
             Dim ToolStripSeparator2 As New ToolStripSeparator
-            PartListingToolStrip.Items.Add(ToolStripSeparator2)
+            ListingToolStrip.Items.Add(ToolStripSeparator2)
 
             Dim KeepOpenHost As New ToolStripControlHost(KeepOpenCheckBox)
-            PartListingToolStrip.Items.Add(KeepOpenHost)
+            ListingToolStrip.Items.Add(KeepOpenHost)
 
             LoadCount()
 
@@ -192,10 +192,31 @@
     End Sub
 
     Public Overrides Function CountQueryBuilder() As Object
-        Dim Query As String = "SELECT COUNT(*) FROM part "
+        Dim Query As String = "SELECT COUNT(*) "
 
+        Query += " FROM part p JOIN part_group pg ON p.pgr_id = pg.pgr_id "
+
+        Dim WhereCheck As Boolean = False
         If ActivePartsCheckBox.Checked = False Then
             Query += "WHERE prt_active = TRUE "
+            WhereCheck = True
+        End If
+
+        If Me.SearchWord.Variable <> "" Then
+            If WhereCheck = False Then
+                Query += "WHERE p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Else
+                Query += "AND p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            End If
+
+            Query += "OR p.prt_desc1 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_desc2 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_desc3 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_sort ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_type ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR pg.pgr_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_upc ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_location ILIKE '%" & Me.SearchWord.Variable & "%' "
         End If
 
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
@@ -205,7 +226,6 @@
 
     Public Overrides Function ListingQueryBuilder() As Object
         Dim Query As String = "SELECT p.prt_no"
-
 
         Query += ", p.prt_desc1"
 
@@ -234,8 +254,27 @@
 
         Query += " FROM part p JOIN part_group pg ON p.pgr_id = pg.pgr_id "
 
+        Dim WhereCheck As Boolean = False
         If ActivePartsCheckBox.Checked = False Then
             Query += "WHERE prt_active = TRUE "
+            WhereCheck = True
+        End If
+
+        If Me.SearchWord.Variable <> "" Then
+            If WhereCheck = False Then
+                Query += "WHERE p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Else
+                Query += "AND p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            End If
+
+            Query += "OR p.prt_desc1 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_desc2 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_desc3 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_sort ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_type ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR pg.pgr_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_upc ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR p.prt_location ILIKE '%" & Me.SearchWord.Variable & "%' "
         End If
 
         Query += "ORDER BY p.prt_no"
@@ -246,7 +285,7 @@
     Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         If Not IsNothing(ParentForm) Then
             If ParentForm.GetType() Is GetType(PartForm) Then
-                If e.ColumnIndex = 0 Then
+                If e.ColumnIndex = 0 And e.RowIndex <> -1 Then
                     ParentForm.SelectedPartTextBox.Text = Me.DataGridView.Item(0, e.RowIndex).Value
                     If KeepOpenCheckBox.Checked = False Then
                         Me.Close()

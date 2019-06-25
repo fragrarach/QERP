@@ -1,4 +1,26 @@
-﻿Public Class OrderListingFormNew
+﻿Public Class OrderListingForm
+
+    Shadows ParentForm
+
+    Public Sub New()
+        InitializeComponent()
+        Me.KeyPreview = True
+    End Sub
+
+    Public Sub New(ByRef ParentFormArg As Form)
+        InitializeComponent()
+        Me.KeyPreview = True
+        ParentForm = ParentFormArg
+    End Sub
+
+    Public Sub New(ByRef ParentFormArg As Form, ByRef MdiFormArg As Form)
+        InitializeComponent()
+        Me.KeyPreview = True
+        Me.Owner = MdiFormArg
+        Me.MdiParent = MdiFormArg
+        ParentForm = ParentFormArg
+    End Sub
+
     Public Overrides Sub LoadColumns(Optional RecordBinding As BindingSource = Nothing)
         Dim ColumnIndex As Int16 = 0
 
@@ -234,7 +256,12 @@
     End Function
 
     Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
-
+        Dim OrderNumber As Int32 = Me.DataGridView.Item(0, e.RowIndex).Value
+        Dim OrderLineListingFormInstance As New OrderLineListingForm(Me, OrderNumber) With {
+            .Owner = Me.Owner,
+            .MdiParent = Me.MdiParent
+        }
+        OrderLineListingFormInstance.Show()
     End Sub
 
     Public Overrides Sub ColumnConfigButton_Click(sender As Object, e As EventArgs)

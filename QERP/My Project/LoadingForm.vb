@@ -1,19 +1,25 @@
 ﻿Public Class LoadingForm
     Dim LoadingText As String
     Shadows ParentForm
-    Public Sub LoadingBarInit(ByVal Max As Int32, ByVal Text As String, ByRef ParentFormArg As Form)
+    Public Sub LoadingBarInit(ByVal Max As Int32, ByVal Text As String, ByRef Optional ParentFormArg As Form = Nothing)
         Me.LoadingProgressBar.Value = 0
         Me.LoadingProgressBar.Maximum = Max
         Me.LoadingText = Text
-        ParentForm = ParentFormArg
 
-        If ParentForm.Mdiparent IsNot Nothing Then
-            Me.Owner = ParentForm.Mdiparent
-            Me.MdiParent = ParentForm.Mdiparent
-            Me.Location = PositioningMethods.MdiCenter(Me, ParentForm.Mdiparent)
+        If Not IsNothing(ParentFormArg) Then
+            ParentForm = ParentFormArg
+            If ParentForm.Mdiparent IsNot Nothing Then
+                Me.Owner = ParentForm.Mdiparent
+                Me.MdiParent = ParentForm.Mdiparent
+                Me.Location = PositioningMethods.MdiCenter(Me, ParentForm.Mdiparent)
+            Else
+                Me.Location = PositioningMethods.CenterToCenter(Me, ParentForm)
+            End If
         Else
-            Me.Location = PositioningMethods.CenterToCenter(Me, ParentForm)
+            CenterToScreen()
         End If
+
+
 
         Me.TopMost = True
 
