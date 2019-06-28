@@ -22,7 +22,10 @@ Partial Class PartForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PartForm))
         Me.PartSearchTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -134,6 +137,20 @@ Partial Class PartForm
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TabControl2 = New System.Windows.Forms.TabControl()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.Index1DataGridView = New System.Windows.Forms.DataGridView()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Index2DataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.Index3DataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SelectedPartTextBox = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.PartGridButton = New System.Windows.Forms.Button()
@@ -141,11 +158,25 @@ Partial Class PartForm
         Me.NextPartButton = New System.Windows.Forms.Button()
         Me.PreviousPartButton = New System.Windows.Forms.Button()
         Me.FirstPartButton = New System.Windows.Forms.Button()
+        Me.ActivePartLabel = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DisplayCommentCheckBox = New System.Windows.Forms.CheckBox()
+        Me.CommentsTextBox = New System.Windows.Forms.TextBox()
+        Me.AddCommentCheckBox = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.PriceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage4.SuspendLayout()
+        Me.TabControl2.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        CType(Me.Index1DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage6.SuspendLayout()
+        CType(Me.Index2DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage7.SuspendLayout()
+        CType(Me.Index3DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PartSearchTextBox
@@ -200,6 +231,7 @@ Partial Class PartForm
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(5, 67)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
@@ -1185,9 +1217,9 @@ Partial Class PartForm
         '
         'Column10
         '
-        DataGridViewCellStyle1.Format = "d"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.Column10.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle17.Format = "d"
+        DataGridViewCellStyle17.NullValue = Nothing
+        Me.Column10.DefaultCellStyle = DataGridViewCellStyle17
         Me.Column10.HeaderText = "Price Date"
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
@@ -1234,6 +1266,160 @@ Partial Class PartForm
         Me.CheckBox1.TabIndex = 0
         Me.CheckBox1.Text = "Part Sold by Weight"
         Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.GroupBox1)
+        Me.TabPage4.Controls.Add(Me.TabControl2)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(886, 443)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "References"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TabControl2
+        '
+        Me.TabControl2.Controls.Add(Me.TabPage5)
+        Me.TabControl2.Controls.Add(Me.TabPage6)
+        Me.TabControl2.Controls.Add(Me.TabPage7)
+        Me.TabControl2.Location = New System.Drawing.Point(6, 6)
+        Me.TabControl2.Name = "TabControl2"
+        Me.TabControl2.SelectedIndex = 0
+        Me.TabControl2.Size = New System.Drawing.Size(874, 138)
+        Me.TabControl2.TabIndex = 0
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.Index1DataGridView)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(866, 112)
+        Me.TabPage5.TabIndex = 0
+        Me.TabPage5.Text = "INDEX 1"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
+        'Index1DataGridView
+        '
+        Me.Index1DataGridView.AllowUserToAddRows = False
+        Me.Index1DataGridView.AllowUserToResizeColumns = False
+        Me.Index1DataGridView.AllowUserToResizeRows = False
+        Me.Index1DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Index1DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Index1DataGridView.ColumnHeadersVisible = False
+        Me.Index1DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column16, Me.Column17})
+        Me.Index1DataGridView.Location = New System.Drawing.Point(6, 6)
+        Me.Index1DataGridView.Name = "Index1DataGridView"
+        Me.Index1DataGridView.ReadOnly = True
+        Me.Index1DataGridView.RowHeadersVisible = False
+        Me.Index1DataGridView.RowTemplate.Height = 19
+        Me.Index1DataGridView.Size = New System.Drawing.Size(854, 100)
+        Me.Index1DataGridView.TabIndex = 0
+        '
+        'Column16
+        '
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control
+        Me.Column16.DefaultCellStyle = DataGridViewCellStyle18
+        Me.Column16.HeaderText = "Column16"
+        Me.Column16.Name = "Column16"
+        Me.Column16.ReadOnly = True
+        Me.Column16.Width = 180
+        '
+        'Column17
+        '
+        Me.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Column17.HeaderText = "Column17"
+        Me.Column17.Name = "Column17"
+        Me.Column17.ReadOnly = True
+        '
+        'TabPage6
+        '
+        Me.TabPage6.Controls.Add(Me.Index2DataGridView)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage6.Name = "TabPage6"
+        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage6.Size = New System.Drawing.Size(866, 112)
+        Me.TabPage6.TabIndex = 1
+        Me.TabPage6.Text = "INDEX 2"
+        Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'Index2DataGridView
+        '
+        Me.Index2DataGridView.AllowUserToAddRows = False
+        Me.Index2DataGridView.AllowUserToResizeColumns = False
+        Me.Index2DataGridView.AllowUserToResizeRows = False
+        Me.Index2DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Index2DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Index2DataGridView.ColumnHeadersVisible = False
+        Me.Index2DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2})
+        Me.Index2DataGridView.Location = New System.Drawing.Point(6, 6)
+        Me.Index2DataGridView.Name = "Index2DataGridView"
+        Me.Index2DataGridView.ReadOnly = True
+        Me.Index2DataGridView.RowHeadersVisible = False
+        Me.Index2DataGridView.RowTemplate.Height = 19
+        Me.Index2DataGridView.Size = New System.Drawing.Size(854, 100)
+        Me.Index2DataGridView.TabIndex = 1
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle19
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Column16"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 180
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Column17"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.Controls.Add(Me.Index3DataGridView)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(866, 112)
+        Me.TabPage7.TabIndex = 2
+        Me.TabPage7.Text = "INDEX 3"
+        Me.TabPage7.UseVisualStyleBackColor = True
+        '
+        'Index3DataGridView
+        '
+        Me.Index3DataGridView.AllowUserToAddRows = False
+        Me.Index3DataGridView.AllowUserToResizeColumns = False
+        Me.Index3DataGridView.AllowUserToResizeRows = False
+        Me.Index3DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Index3DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Index3DataGridView.ColumnHeadersVisible = False
+        Me.Index3DataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
+        Me.Index3DataGridView.Location = New System.Drawing.Point(6, 6)
+        Me.Index3DataGridView.Name = "Index3DataGridView"
+        Me.Index3DataGridView.ReadOnly = True
+        Me.Index3DataGridView.RowHeadersVisible = False
+        Me.Index3DataGridView.RowTemplate.Height = 19
+        Me.Index3DataGridView.Size = New System.Drawing.Size(854, 100)
+        Me.Index3DataGridView.TabIndex = 1
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle20
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Column16"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.Width = 180
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Column17"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
         '
         'SelectedPartTextBox
         '
@@ -1331,11 +1517,68 @@ Partial Class PartForm
         Me.FirstPartButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.FirstPartButton.UseVisualStyleBackColor = False
         '
+        'ActivePartLabel
+        '
+        Me.ActivePartLabel.AutoSize = True
+        Me.ActivePartLabel.ForeColor = System.Drawing.Color.Black
+        Me.ActivePartLabel.Location = New System.Drawing.Point(311, 44)
+        Me.ActivePartLabel.Name = "ActivePartLabel"
+        Me.ActivePartLabel.Size = New System.Drawing.Size(70, 13)
+        Me.ActivePartLabel.TabIndex = 7
+        Me.ActivePartLabel.Text = "Active Status"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.AddCommentCheckBox)
+        Me.GroupBox1.Controls.Add(Me.CommentsTextBox)
+        Me.GroupBox1.Controls.Add(Me.DisplayCommentCheckBox)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 150)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(874, 287)
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Comments"
+        '
+        'DisplayCommentCheckBox
+        '
+        Me.DisplayCommentCheckBox.AutoCheck = False
+        Me.DisplayCommentCheckBox.AutoSize = True
+        Me.DisplayCommentCheckBox.Location = New System.Drawing.Point(9, 264)
+        Me.DisplayCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
+        Me.DisplayCommentCheckBox.Name = "DisplayCommentCheckBox"
+        Me.DisplayCommentCheckBox.Size = New System.Drawing.Size(230, 17)
+        Me.DisplayCommentCheckBox.TabIndex = 1
+        Me.DisplayCommentCheckBox.Text = "Display Comment When Ordering/Invoicing"
+        Me.DisplayCommentCheckBox.UseVisualStyleBackColor = True
+        '
+        'CommentsTextBox
+        '
+        Me.CommentsTextBox.BackColor = System.Drawing.SystemColors.Window
+        Me.CommentsTextBox.Location = New System.Drawing.Point(6, 19)
+        Me.CommentsTextBox.Multiline = True
+        Me.CommentsTextBox.Name = "CommentsTextBox"
+        Me.CommentsTextBox.ReadOnly = True
+        Me.CommentsTextBox.Size = New System.Drawing.Size(862, 236)
+        Me.CommentsTextBox.TabIndex = 2
+        '
+        'AddCommentCheckBox
+        '
+        Me.AddCommentCheckBox.AutoCheck = False
+        Me.AddCommentCheckBox.AutoSize = True
+        Me.AddCommentCheckBox.Location = New System.Drawing.Point(248, 264)
+        Me.AddCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
+        Me.AddCommentCheckBox.Name = "AddCommentCheckBox"
+        Me.AddCommentCheckBox.Size = New System.Drawing.Size(173, 17)
+        Me.AddCommentCheckBox.TabIndex = 3
+        Me.AddCommentCheckBox.Text = "Add Comment to Order/Invoice"
+        Me.AddCommentCheckBox.UseVisualStyleBackColor = True
+        '
         'PartForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(904, 541)
+        Me.Controls.Add(Me.ActivePartLabel)
         Me.Controls.Add(Me.PartGridButton)
         Me.Controls.Add(Me.Label43)
         Me.Controls.Add(Me.TabControl1)
@@ -1360,6 +1603,16 @@ Partial Class PartForm
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.PriceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabControl2.ResumeLayout(False)
+        Me.TabPage5.ResumeLayout(False)
+        CType(Me.Index1DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage6.ResumeLayout(False)
+        CType(Me.Index2DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage7.ResumeLayout(False)
+        CType(Me.Index3DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1482,4 +1735,23 @@ Partial Class PartForm
     Friend WithEvents NextPartButton As Button
     Friend WithEvents LastPartButton As Button
     Friend WithEvents PartGridButton As Button
+    Friend WithEvents ActivePartLabel As Label
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents TabControl2 As TabControl
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents TabPage7 As TabPage
+    Friend WithEvents Index1DataGridView As DataGridView
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
+    Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents Index2DataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents Index3DataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents AddCommentCheckBox As CheckBox
+    Friend WithEvents CommentsTextBox As TextBox
+    Friend WithEvents DisplayCommentCheckBox As CheckBox
 End Class

@@ -212,6 +212,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\OrderListingConfig.vb" />
+    <Compile Include="My Project\OrderListingConfigForm.Designer.vb">
+      <DependentUpon>OrderListingConfigForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\OrderListingConfigForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\SearchWord.vb" />
     <Compile Include="My Project\ExtensionMethods.vb" />
     <Compile Include="My Project\FilerMethods.vb" />
@@ -320,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\ListingConfigForm.resx">
       <DependentUpon>ListingConfigForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\OrderListingConfigForm.resx">
+      <DependentUpon>OrderListingConfigForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PLQListingConfigForm.resx">
       <DependentUpon>PLQListingConfigForm.vb</DependentUpon>

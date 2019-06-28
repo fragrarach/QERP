@@ -24,7 +24,9 @@
     Private Sub AcceptButton_Click(sender As Object, e As EventArgs) Handles YesButton.Click
         Dim SearchWord As String = Me.SearchTextBox.Text
         Me.Close()
-        ParentForm.SearchWord.Variable = SearchWord
+        If Not (ParentForm.SearchWord.Variable = SearchWord) Then
+            ParentForm.SearchWord.Variable = SearchWord
+        End If
     End Sub
 
     Private Sub CancelButton_Click(sender As Object, e As EventArgs) Handles NoButton.Click

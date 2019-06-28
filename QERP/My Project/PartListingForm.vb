@@ -85,110 +85,98 @@
         Me.DataGridView.Columns(ColumnIndex).Width = 112
         Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
-
-        If PartListingConfig.ActiveColumns(0) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(1) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(2) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 365
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(3) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
             Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(4) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(5) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(6) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 75
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
-        If PartListingConfig.ActiveColumns(7) = True Then
-            ColumnIndex += 1
+        ColumnIndex += 1
+        If PartListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns(ColumnIndex).Visible = True
             Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
             Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
             Me.DataGridView.Columns(ColumnIndex).Width = 100
-            Me.DataGridView.Columns(ColumnIndex).Visible = True
         Else
-            ColumnIndex += 1
             Me.DataGridView.Columns(ColumnIndex).Visible = False
         End If
 
         Dim UserColumns As List(Of String) = FilerMethods.LoadPartIndexes()
         For i = 0 To UserColumns.Count - 1
+            ColumnIndex += 1
             If PartListingConfig.ActiveColumns(8 + i) = True Then
-                ColumnIndex += 1
+                Me.DataGridView.Columns(ColumnIndex).Visible = True
                 Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
                 Me.DataGridView.Columns(ColumnIndex).HeaderText = PartListingConfig.ColumnNames(ColumnIndex)
                 Me.DataGridView.Columns(ColumnIndex).Width = 120
-                Me.DataGridView.Columns(ColumnIndex).Visible = True
             Else
-                ColumnIndex += 1
                 Me.DataGridView.Columns(ColumnIndex).Visible = False
             End If
         Next
-
-
     End Sub
 
     Public Overrides Function CountQueryBuilder() As Object

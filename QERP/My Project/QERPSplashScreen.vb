@@ -33,6 +33,7 @@
 
         PartListingConfig.PartListingConfigInit()
         PLQListingConfig.PLQListingConfigInit()
+        OrderListingConfig.OrderListingConfigInit()
     End Sub
 
 End Class

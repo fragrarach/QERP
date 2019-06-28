@@ -1,6 +1,7 @@
 ﻿Module PartListingConfig
-    Public ActiveColumns(0 To 22) As Boolean
+    Public ActiveColumns(0 To 23) As Boolean
     Public ColumnNames(0 To 23) As String
+
     Public Sub PartListingConfigInit()
         For i = 0 To UBound(ActiveColumns, 1)
             ActiveColumns(i) = True

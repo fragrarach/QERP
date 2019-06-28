@@ -18,13 +18,32 @@ Public Class PartForm
     End Sub
 
     Private Sub LoadData()
+        SetActiveLabel()
         If TabControl1.SelectedTab Is TabPage1 Then
             LoadInformation1Tab()
         ElseIf TabControl1.SelectedTab Is TabPage2 Then
             LoadInformation2Tab()
         ElseIf TabControl1.SelectedTab Is TabPage3 Then
-            LoadPriceDataGridView()
+            LoadPriceTab()
+        ElseIf TabControl1.SelectedTab Is TabPage4 Then
+            LoadReferencesTab()
         End If
+    End Sub
+
+    Private Sub SetActiveLabel()
+        Dim Query As String = "SELECT prt_active FROM part WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
+        If Record IsNot Nothing Then
+            If Record(0, 0) = True Then
+                ActivePartLabel.Text = "Active"
+                ActivePartLabel.ForeColor = Color.Green
+            Else
+                ActivePartLabel.Text = "Inactive"
+                ActivePartLabel.ForeColor = Color.Red
+            End If
+        End If
+
     End Sub
 
     Private Sub LoadInformation1Tab()
@@ -87,13 +106,17 @@ Public Class PartForm
         End If
     End Sub
 
+    Private Sub LoadPriceTab()
+        LoadPriceDataGridView()
+    End Sub
+
     Private Sub LoadPriceDataGridView()
         Dim Query As String = "SELECT * FROM part_form_prices WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
         Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
 
         PriceDataGridView.Rows.Clear()
-            For RowIndex = 0 To 4
-                PriceDataGridView.Rows.Add()
+        For RowIndex = 0 To 4
+            PriceDataGridView.Rows.Add()
             For ColumnIndex = 0 To 14
                 If Record IsNot Nothing Then
                     PriceDataGridView.Item(ColumnIndex, RowIndex).Value = Record(ColumnIndex + 1, RowIndex)
@@ -118,6 +141,99 @@ Public Class PartForm
                 PriceDataGridView.Item(ColumnIndex, RowIndex).Style.BackColor = SystemColors.Control
             Next
         Next
+    End Sub
+
+    Private Sub LoadReferencesTab()
+        LoadIndexTabs()
+        LoadComments()
+    End Sub
+
+    Private Sub LoadIndexTabs()
+        If TabControl2.SelectedTab Is TabPage5 Then
+            LoadIndex1Tab()
+        ElseIf TabControl2.SelectedTab Is TabPage6 Then
+            LoadIndex2Tab()
+        ElseIf TabControl2.SelectedTab Is TabPage7 Then
+            LoadIndex3Tab()
+        End If
+    End Sub
+
+    Private Sub LoadIndex1Tab()
+        Dim PartList As List(Of String) = FilerMethods.LoadPartIndexes
+
+        Index1DataGridView.Rows.Clear()
+        Index1DataGridView.Rows.Add(PartList(0))
+        Index1DataGridView.Rows.Add(PartList(1))
+        Index1DataGridView.Rows.Add(PartList(2))
+        Index1DataGridView.Rows.Add(PartList(3))
+        Index1DataGridView.Rows.Add(PartList(4))
+
+        Dim Query As String = "SELECT prt_idx1_1, prt_idx1_2, prt_idx1_3, prt_idx1_4, prt_idx1_5 FROM part WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
+        If Record IsNot Nothing Then
+            Index1DataGridView.Item(1, 0).Value = Trim(Record(0, 0))
+            Index1DataGridView.Item(1, 1).Value = Trim(Record(1, 0))
+            Index1DataGridView.Item(1, 2).Value = Trim(Record(2, 0))
+            Index1DataGridView.Item(1, 3).Value = Trim(Record(3, 0))
+            Index1DataGridView.Item(1, 4).Value = Trim(Record(4, 0))
+        End If
+    End Sub
+
+    Private Sub LoadIndex2Tab()
+        Dim PartList As List(Of String) = FilerMethods.LoadPartIndexes
+
+        Index2DataGridView.Rows.Clear()
+        Index2DataGridView.Rows.Add(PartList(5))
+        Index2DataGridView.Rows.Add(PartList(6))
+        Index2DataGridView.Rows.Add(PartList(7))
+        Index2DataGridView.Rows.Add(PartList(8))
+        Index2DataGridView.Rows.Add(PartList(9))
+
+        Dim Query As String = "SELECT prt_idx2_1, prt_idx2_2, prt_idx2_3, prt_idx2_4, prt_idx2_5 FROM part WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
+        If Record IsNot Nothing Then
+            Index2DataGridView.Item(1, 0).Value = Trim(Record(0, 0))
+            Index2DataGridView.Item(1, 1).Value = Trim(Record(1, 0))
+            Index2DataGridView.Item(1, 2).Value = Trim(Record(2, 0))
+            Index2DataGridView.Item(1, 3).Value = Trim(Record(3, 0))
+            Index2DataGridView.Item(1, 4).Value = Trim(Record(4, 0))
+        End If
+    End Sub
+
+    Private Sub LoadIndex3Tab()
+        Dim PartList As List(Of String) = FilerMethods.LoadPartIndexes
+
+        Index3DataGridView.Rows.Clear()
+        Index3DataGridView.Rows.Add(PartList(10))
+        Index3DataGridView.Rows.Add(PartList(11))
+        Index3DataGridView.Rows.Add(PartList(12))
+        Index3DataGridView.Rows.Add(PartList(13))
+        Index3DataGridView.Rows.Add(PartList(14))
+
+        Dim Query As String = "SELECT prt_idx3_1, prt_idx3_2, prt_idx3_3, prt_idx3_4, prt_idx3_5 FROM part WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
+        If Record IsNot Nothing Then
+            Index3DataGridView.Item(1, 0).Value = Trim(Record(0, 0))
+            Index3DataGridView.Item(1, 1).Value = Trim(Record(1, 0))
+            Index3DataGridView.Item(1, 2).Value = Trim(Record(2, 0))
+            Index3DataGridView.Item(1, 3).Value = Trim(Record(3, 0))
+            Index3DataGridView.Item(1, 4).Value = Trim(Record(4, 0))
+        End If
+    End Sub
+
+    Private Sub LoadComments()
+        Dim Query As String = "SELECT prt_note, prt_note_display, prt_add_note FROM part WHERE prt_no ='" & SelectedPartTextBox.Text & "'"
+        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
+        If Record IsNot Nothing Then
+            CommentsTextBox.Text = Trim(Record(0, 0))
+            DisplayCommentCheckBox.Checked = Trim(Record(1, 0))
+            AddCommentCheckBox.Checked = Trim(Record(2, 0))
+        End If
+
     End Sub
 
     Private Sub PartNumberTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles PartSearchTextBox.KeyDown
@@ -200,5 +316,9 @@ Public Class PartForm
 
     Private Sub PartForm_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.Escape Then Me.Close()
+    End Sub
+
+    Private Sub TabControl2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl2.SelectedIndexChanged
+        LoadIndexTabs()
     End Sub
 End Class
