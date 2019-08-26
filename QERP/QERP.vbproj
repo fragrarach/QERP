@@ -212,12 +212,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\OrderLineListingConfig.vb" />
     <Compile Include="My Project\OrderListingConfig.vb" />
     <Compile Include="My Project\OrderListingConfigForm.Designer.vb">
       <DependentUpon>OrderListingConfigForm.vb</DependentUpon>
     </Compile>
     <Compile Include="My Project\OrderListingConfigForm.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\WeightsDimsListingConfig.vb" />
+    <Compile Include="My Project\WeightsDimsListingForm.Designer.vb">
+      <DependentUpon>WeightsDimsListingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\WeightsDimsListingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\SearchWord.vb" />
     <Compile Include="My Project\ExtensionMethods.vb" />
@@ -304,11 +317,6 @@
     <Compile Include="My Project\PartForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -320,6 +328,7 @@
     <Compile Include="My Project\QERPSplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="My Project\SQLConfig.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
@@ -336,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PartListingConfigForm.resx">
       <DependentUpon>PartListingConfigForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\WeightsDimsListingForm.resx">
+      <DependentUpon>WeightsDimsListingForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\PLQListingForm.resx">
       <DependentUpon>PLQListingForm.vb</DependentUpon>
@@ -439,6 +451,11 @@
     <None Include="Resources\CHECK_BOX_OFF_ICON.png" />
     <Content Include="Resources\Icon1.ico" />
     <None Include="Resources\SEARCH_ICON.bmp" />
+    <None Include="Resources\part_form_information_1 view.sql" />
+    <None Include="Resources\part_form_information_2 view.sql" />
+    <None Include="Resources\part_form_prev_next view.sql" />
+    <None Include="Resources\part_form_prices view.sql" />
+    <None Include="Resources\part_listing_form_view.sql" />
     <Content Include="SIGM_ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

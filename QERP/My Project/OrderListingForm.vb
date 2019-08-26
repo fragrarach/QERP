@@ -275,45 +275,6 @@
 
     End Sub
 
-    Public Overrides Function CountQueryBuilder() As Object
-        Dim Query As String = "SELECT COUNT(*) "
-        Query += "FROM order_header o "
-        Query += "LEFT JOIN client c USING(cli_id) "
-        Query += "LEFT JOIN client ic ON o.inv_cli_id = ic.cli_id "
-        Query += "LEFT JOIN ord_status os ON o.ord_status = os.ord_status_idx "
-        Query += "LEFT JOIN orc_type ot ON o.ord_type = ot.orc_type_idx "
-        Query += "LEFT JOIN invoicing i USING(ord_no) "
-        Query += "LEFT JOIN invoicing_line il USING(inv_id)"
-
-        If Me.SearchWord.Variable <> "" Then
-            Query += "WHERE o.ord_no::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR c.cli_no ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_date::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR os.ord_status ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR il.inv_pckslp_no::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR il.inv_no::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_note1 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_note2 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_note3 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_note4 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_req_dt::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_req_dt::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.cli_del_name1 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.cli_del_city ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.inv_name1 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.inv_city ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_bo_accptd::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_sb_authorized::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_type::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_printed::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR o.ord_pkl_printed::TEXT ILIKE '%" & Me.SearchWord.Variable & "%' "
-        End If
-
-        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        Dim Count As String = Record(0, 0)
-        Return Count
-    End Function
-
     Public Overrides Function ListingQueryBuilder() As Object
         Dim Query As String = "SELECT o.ord_no "
 
@@ -417,7 +378,7 @@
         Return Query
     End Function
 
-    Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    Public Overrides Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs)
         Dim OrderNumber As Int32 = Me.DataGridView.Item(0, e.RowIndex).Value
         Dim OrderLineListingFormInstance As New OrderLineListingForm(Me, OrderNumber) With {
             .Owner = Me.Owner,

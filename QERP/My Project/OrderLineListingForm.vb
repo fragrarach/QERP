@@ -43,14 +43,18 @@
         Next
 
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Order Line Number"
+        Me.DataGridView.Columns(ColumnIndex).HeaderText = OrderLineListingConfig.ColumnNames(ColumnIndex)
         Me.DataGridView.Columns(ColumnIndex).Width = 112
         Me.DataGridView.Columns(ColumnIndex).Frozen = True
 
         ColumnIndex += 1
-        Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
-        Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
-        Me.DataGridView.Columns(ColumnIndex).Width = 112
+        If OrderListingConfig.ActiveColumns(ColumnIndex - 1) = True Then
+            Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
+            Me.DataGridView.Columns(ColumnIndex).HeaderText = "Part Number"
+            Me.DataGridView.Columns(ColumnIndex).Width = 112
+        Else
+            Me.DataGridView.Columns(ColumnIndex).Visible = False
+        End If
 
         ColumnIndex += 1
         Me.DataGridView.Columns.Item(ColumnIndex).HeaderCell = New DataGridViewAutoFilter.DataGridViewAutoFilterColumnHeaderCell
@@ -165,7 +169,7 @@
         Return Query
     End Function
 
-    Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    Public Overrides Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs)
 
     End Sub
 

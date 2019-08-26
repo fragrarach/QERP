@@ -12,11 +12,11 @@
             Me.CenterToScreen()
         End If
 
-        LoadCount()
-
         Dim RecordBinding As BindingSource = LoadListingData(Me)
 
         LoadColumns(RecordBinding)
+
+        LoadCount()
 
     End Sub
 
@@ -25,7 +25,8 @@
     End Sub
 
     Public Overridable Function CountQueryBuilder()
-
+        Dim Count As String = Me.DataGridView.RowCount
+        Return Count
     End Function
 
     Public Overridable Function ListingQueryBuilder()
@@ -40,7 +41,6 @@
         Dim RecordBinding As New BindingSource With {
                 .DataSource = RecordTable
         }
-
 
         If Record IsNot Nothing Then
             DataGridView.Columns.Clear()
@@ -80,7 +80,7 @@
         Return RecordBinding
     End Function
 
-    Public Overridable Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellDoubleClick
+    Public Overridable Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellDoubleClick
 
     End Sub
 
@@ -174,8 +174,6 @@
 
         LoadCount()
 
-        SearchFormatDataGridView()
-
         If NewWord <> "" Then
             Dim SearchWordToolStripSeparator As New ToolStripSeparator With {
                 .Name = "SearchWordToolStripSeparator"
@@ -191,28 +189,21 @@
 
     End Sub
 
-    Private Sub Test(sender As Object, e As EventArgs) Handles DataGridView.Sorted
-        DataGridView.SuspendLayout()
-        SearchFormatDataGridView()
-        DataGridView.ResumeLayout()
-    End Sub
+    Private Sub DataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView.CellFormatting
+        If SearchWord.Variable <> "" And e.RowIndex >= 0 Then
 
-    Private Sub SearchFormatDataGridView()
-        If SearchWord.Variable <> "" Then
-            Dim BoldFont As New Font(DataGridView.DefaultCellStyle.Font, FontStyle.Bold)
-            For i = 0 To Me.DataGridView.Columns.Count - 1
-                For j = 0 To Me.DataGridView.Rows.Count - 1
-                    If Me.DataGridView.Item(i, j).Style.Font Is BoldFont Then
-                        Me.DataGridView.Item(i, j).Style.Font = DataGridView.DefaultCellStyle.Font
-                    End If
+            Dim BoldFont As New Font(Me.DataGridView.DefaultCellStyle.Font, FontStyle.Bold)
+            Dim Cell As DataGridViewCell = Me.DataGridView.Item(e.ColumnIndex, e.RowIndex)
+            Dim CellValue As String = Cell.Value.ToString.ToUpper
 
-                    Dim CellValue As String = Me.DataGridView.Item(i, j).Value.ToString.ToUpper
-                    If CellValue.IndexOf(SearchWord.Variable.ToUpper) <> -1 Then
-                        Me.DataGridView.Item(i, j).Style.Font = BoldFont
-                    End If
-                Next
-            Next
+            If CellValue.IndexOf(SearchWord.Variable.ToUpper) <> -1 Then
+                Cell.Style.Font = BoldFont
+            End If
+
         End If
     End Sub
 
+    Public Overridable Sub DataGridView_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView.CellValueChanged
+
+    End Sub
 End Class

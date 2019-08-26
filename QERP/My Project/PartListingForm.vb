@@ -51,11 +51,11 @@
             Dim KeepOpenHost As New ToolStripControlHost(KeepOpenCheckBox)
             ListingToolStrip.Items.Add(KeepOpenHost)
 
-            LoadCount()
-
             Dim RecordBinding As BindingSource = LoadListingData(Me)
 
             LoadColumns(RecordBinding)
+
+            LoadCount()
 
             If Not IsNothing(ParentForm) Then
                 If ParentForm.GetType() Is GetType(PartForm) Then
@@ -177,70 +177,16 @@
                 Me.DataGridView.Columns(ColumnIndex).Visible = False
             End If
         Next
+
+        ColumnIndex += 1
+        Me.DataGridView.Columns(ColumnIndex).Visible = False
+
     End Sub
 
-    Public Overrides Function CountQueryBuilder() As Object
-        Dim Query As String = "SELECT COUNT(*) "
-
-        Query += " FROM part p JOIN part_group pg ON p.pgr_id = pg.pgr_id "
-
-        Dim WhereCheck As Boolean = False
-        If ActivePartsCheckBox.Checked = False Then
-            Query += "WHERE prt_active = TRUE "
-            WhereCheck = True
-        End If
-
-        If Me.SearchWord.Variable <> "" Then
-            If WhereCheck = False Then
-                Query += "WHERE p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Else
-                Query += "AND p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
-            End If
-
-            Query += "OR p.prt_desc1 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_desc2 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_desc3 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_sort ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_type ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR pg.pgr_no ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_upc ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_location ILIKE '%" & Me.SearchWord.Variable & "%' "
-        End If
-
-        Dim Record As Object = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
-        Dim Count As String = Record(0, 0)
-        Return Count
-    End Function
-
     Public Overrides Function ListingQueryBuilder() As Object
-        Dim Query As String = "SELECT p.prt_no"
+        Dim Query As String
 
-        Query += ", p.prt_desc1"
-
-        Query += ", p.prt_desc2"
-
-        Query += ", p.prt_desc3"
-
-        Query += ", p.prt_sort"
-
-        Query += ", p.prt_type"
-
-        Query += ", pg.pgr_no"
-
-        Query += ", p.prt_upc"
-
-        Query += ", p.prt_location"
-
-
-        Dim k As Int16 = 1
-        For i = 1 To 3
-            For j = 1 To 5
-                Query += ", p.prt_idx" & i & "_" & j
-                k += 1
-            Next
-        Next
-
-        Query += " FROM part p JOIN part_group pg ON p.pgr_id = pg.pgr_id "
+        Query = "SELECT * FROM part_listing_form "
 
         Dim WhereCheck As Boolean = False
         If ActivePartsCheckBox.Checked = False Then
@@ -250,27 +196,28 @@
 
         If Me.SearchWord.Variable <> "" Then
             If WhereCheck = False Then
-                Query += "WHERE p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+                Query += "WHERE prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+                WhereCheck = True
             Else
-                Query += "AND p.prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+                Query += "AND prt_no ILIKE '%" & Me.SearchWord.Variable & "%' "
             End If
 
-            Query += "OR p.prt_desc1 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_desc2 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_desc3 ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_sort ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_type ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR pg.pgr_no ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_upc ILIKE '%" & Me.SearchWord.Variable & "%' "
-            Query += "OR p.prt_location ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_desc1 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_desc2 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_desc3 ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_sort ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_type ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR pgr_no ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_upc ILIKE '%" & Me.SearchWord.Variable & "%' "
+            Query += "OR prt_location ILIKE '%" & Me.SearchWord.Variable & "%' "
         End If
 
-        Query += "ORDER BY p.prt_no"
+        Query += "ORDER BY prt_no"
 
         Return Query
     End Function
 
-    Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    Public Overrides Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs)
         If Not IsNothing(ParentForm) Then
             If ParentForm.GetType() Is GetType(PartForm) Then
                 If e.ColumnIndex = 0 And e.RowIndex <> -1 Then

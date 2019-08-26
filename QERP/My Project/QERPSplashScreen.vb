@@ -31,9 +31,12 @@
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
 
+        SQLConfig.SQLConfigInit()
+
         PartListingConfig.PartListingConfigInit()
         PLQListingConfig.PLQListingConfigInit()
         OrderListingConfig.OrderListingConfigInit()
+        WeightsDimsListingConfig.WeightsDimsListingConfigInit()
     End Sub
 
 End Class

@@ -131,6 +131,135 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to --SQL
+        '''CREATE OR REPLACE VIEW part_form_information_1 AS (
+        '''    SELECT
+        '''        p.prt_no,
+        '''        p.prt_desc1,
+        '''        p.prt_desc2,
+        '''        p.prt_desc3,
+        '''        pg.pgr_no,
+        '''        pg.pgr_desc,
+        '''        (
+        '''            SELECT sup_no 
+        '''            FROM part_supplier 
+        '''            WHERE psp_idx = p.prt_def_sup_idx 
+        '''            AND prt_id = p.prt_id
+        '''        ),
+        '''        (
+        '''            SELECT sup_name1 
+        '''            FROM supplier 
+        '''            WHERE sup_no IN 
+        '''            (
+        '''                SELECT sup_no         ''' [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property part_form_information_1_view() As String
+            Get
+                Return ResourceManager.GetString("part_form_information_1_view", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to --SQL
+        '''CREATE OR REPLACE VIEW part_form_information_2 AS (
+        '''    SELECT
+        '''        p.prt_no,
+        '''        CASE
+        '''            WHEN p.pca_no = 0 THEN &apos; &apos;
+        '''            WHEN p.pca_no = -1 THEN &apos; &apos;
+        '''        END AS pca_no,
+        '''        p.prt_det_prt_no,
+        '''        (
+        '''            SELECT psp_part_no 
+        '''            FROM part_supplier 
+        '''            WHERE psp_idx = p.prt_def_sup_idx 
+        '''            AND prt_id = p.prt_id
+        '''        ),
+        '''        p.prt_del_delay,
+        '''        p.prt_upc,
+        '''        p.prt_dsgn_no,
+        '''        p.prt_issue_no,
+        '''         [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property part_form_information_2_view() As String
+            Get
+                Return ResourceManager.GetString("part_form_information_2_view", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to --SQL
+        '''CREATE OR REPLACE VIEW part_form_prev_next AS (
+        '''    SELECT 
+        '''        prt_no, 
+        '''        LAG(prt_no) over (ORDER BY prt_no ASC) AS prev_prt_no,
+        '''        LEAD(prt_no) over (ORDER BY prt_no ASC) AS next_prt_no
+        '''    FROM part 
+        '''    ORDER BY prt_no ASC
+        ''');.
+        '''</summary>
+        Friend ReadOnly Property part_form_prev_next_view() As String
+            Get
+                Return ResourceManager.GetString("part_form_prev_next_view", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to --SQL
+        '''CREATE OR REPLACE VIEW part_form_prices AS (
+        '''    SELECT
+        '''        prt_no,
+        '''        pp.ppr_sort_idx,
+        '''        CASE
+        '''            WHEN pp.ppr_sort_idx = 1 THEN &apos;RETAIL CDN&apos;
+        '''            WHEN pp.ppr_sort_idx = 2 THEN &apos;RETAIL USD&apos;
+        '''            WHEN pp.ppr_sort_idx = 3 THEN &apos;RETAIL EURO&apos;
+        '''            WHEN pp.ppr_sort_idx = 4 THEN &apos;LEVEL 4&apos;
+        '''            WHEN pp.ppr_sort_idx = 5 THEN &apos;LEVEL 5&apos;
+        '''        END AS price_name,
+        '''        pp.ppr_price,
+        '''        CASE
+        '''            WHEN pp.ppr_price &lt;&gt; 0 AND ps.sup_no &lt; [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property part_form_prices_view() As String
+            Get
+                Return ResourceManager.GetString("part_form_prices_view", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to --SQL
+        '''CREATE OR REPLACE VIEW part_listing_form AS (
+        '''    SELECT 
+        '''        p.prt_no,
+        '''        p.prt_desc1,
+        '''        p.prt_desc2,
+        '''        p.prt_desc3,
+        '''        p.prt_sort,
+        '''        p.prt_type,
+        '''        pg.pgr_no,
+        '''        p.prt_upc,
+        '''        p.prt_location,
+        '''        p.prt_idx1_1,
+        '''        p.prt_idx1_2,
+        '''        p.prt_idx1_3,
+        '''        p.prt_idx1_4,
+        '''        p.prt_idx1_5,
+        '''        p.prt_idx2_1,
+        '''        p.prt_idx2_2,
+        '''        p.prt_idx2_3,
+        '''        p.prt_idx2_4,
+        '''        p.prt_idx2_5,
+        '''        p.prt_idx3_1,
+        '''        p.prt_idx3_2 [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property part_listing_form_view() As String
+            Get
+                Return ResourceManager.GetString("part_listing_form_view", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property QUATRO_LOGO() As System.Drawing.Bitmap

@@ -297,7 +297,7 @@
         Return Query
     End Function
 
-    Public Overrides Sub DataGridView_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
+    Public Overrides Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs)
 
     End Sub
 
