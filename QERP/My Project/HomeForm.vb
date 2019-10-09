@@ -22,4 +22,12 @@
         }
         OrderListingFormInstance.Show()
     End Sub
+
+    Private Sub WeightsDimsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WeightsDimsToolStripMenuItem.Click
+        Dim PLQListingFormInstance As New WeightsDimsListingForm(Me) With {
+            .Owner = Me,
+            .MdiParent = Me
+        }
+        PLQListingFormInstance.Show()
+    End Sub
 End Class

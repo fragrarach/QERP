@@ -19,8 +19,6 @@
             CenterToScreen()
         End If
 
-
-
         Me.TopMost = True
 
         Me.Show()

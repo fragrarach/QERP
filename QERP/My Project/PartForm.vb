@@ -236,7 +236,7 @@ Public Class PartForm
 
     End Sub
 
-    Private Sub PartNumberTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles PartSearchTextBox.KeyDown
+    Private Sub PartSearchTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles PartSearchTextBox.KeyDown
         If e.KeyValue = 13 And PartSearchTextBox.Text <> "" Then
             PartSearch()
             e.SuppressKeyPress = True

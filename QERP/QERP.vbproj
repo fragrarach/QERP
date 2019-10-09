@@ -212,6 +212,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\TreeViewForm.Designer.vb">
+      <DependentUpon>TreeViewForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\TreeViewForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\OrderLineListingConfig.vb" />
     <Compile Include="My Project\OrderListingConfig.vb" />
     <Compile Include="My Project\OrderListingConfigForm.Designer.vb">
@@ -331,6 +337,9 @@
     <Compile Include="My Project\SQLConfig.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\TreeViewForm.resx">
+      <DependentUpon>TreeViewForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -449,6 +458,8 @@
     <None Include="Resources\CONFIGURE_ICON1.png" />
     <None Include="Resources\CHECK_BOX_ON_ICON.png" />
     <None Include="Resources\CHECK_BOX_OFF_ICON.png" />
+    <None Include="Resources\COLLAPSE_ALL_ICON.png" />
+    <None Include="Resources\EXPAND_ALL_ICON.png" />
     <Content Include="Resources\Icon1.ico" />
     <None Include="Resources\SEARCH_ICON.bmp" />
     <None Include="Resources\part_form_information_1 view.sql" />

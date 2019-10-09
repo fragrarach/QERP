@@ -31,6 +31,8 @@
         'Copyright info
         Copyright.Text = My.Application.Info.Copyright
 
+        Me.TopMost = True
+
         SQLConfig.SQLConfigInit()
 
         PartListingConfig.PartListingConfigInit()

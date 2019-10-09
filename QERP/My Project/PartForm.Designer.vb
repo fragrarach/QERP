@@ -22,10 +22,10 @@ Partial Class PartForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PartForm))
         Me.PartSearchTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -138,6 +138,10 @@ Partial Class PartForm
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.AddCommentCheckBox = New System.Windows.Forms.CheckBox()
+        Me.CommentsTextBox = New System.Windows.Forms.TextBox()
+        Me.DisplayCommentCheckBox = New System.Windows.Forms.CheckBox()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Index1DataGridView = New System.Windows.Forms.DataGridView()
@@ -159,16 +163,13 @@ Partial Class PartForm
         Me.PreviousPartButton = New System.Windows.Forms.Button()
         Me.FirstPartButton = New System.Windows.Forms.Button()
         Me.ActivePartLabel = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DisplayCommentCheckBox = New System.Windows.Forms.CheckBox()
-        Me.CommentsTextBox = New System.Windows.Forms.TextBox()
-        Me.AddCommentCheckBox = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.PriceDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.TabControl2.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         CType(Me.Index1DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +177,6 @@ Partial Class PartForm
         CType(Me.Index2DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage7.SuspendLayout()
         CType(Me.Index3DataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PartSearchTextBox
@@ -1217,9 +1217,9 @@ Partial Class PartForm
         '
         'Column10
         '
-        DataGridViewCellStyle17.Format = "d"
-        DataGridViewCellStyle17.NullValue = Nothing
-        Me.Column10.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle1.Format = "d"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.Column10.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column10.HeaderText = "Price Date"
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
@@ -1279,6 +1279,52 @@ Partial Class PartForm
         Me.TabPage4.Text = "References"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.AddCommentCheckBox)
+        Me.GroupBox1.Controls.Add(Me.CommentsTextBox)
+        Me.GroupBox1.Controls.Add(Me.DisplayCommentCheckBox)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 150)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(874, 287)
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Comments"
+        '
+        'AddCommentCheckBox
+        '
+        Me.AddCommentCheckBox.AutoCheck = False
+        Me.AddCommentCheckBox.AutoSize = True
+        Me.AddCommentCheckBox.Location = New System.Drawing.Point(248, 264)
+        Me.AddCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
+        Me.AddCommentCheckBox.Name = "AddCommentCheckBox"
+        Me.AddCommentCheckBox.Size = New System.Drawing.Size(173, 17)
+        Me.AddCommentCheckBox.TabIndex = 3
+        Me.AddCommentCheckBox.Text = "Add Comment to Order/Invoice"
+        Me.AddCommentCheckBox.UseVisualStyleBackColor = True
+        '
+        'CommentsTextBox
+        '
+        Me.CommentsTextBox.BackColor = System.Drawing.SystemColors.Window
+        Me.CommentsTextBox.Location = New System.Drawing.Point(6, 19)
+        Me.CommentsTextBox.Multiline = True
+        Me.CommentsTextBox.Name = "CommentsTextBox"
+        Me.CommentsTextBox.ReadOnly = True
+        Me.CommentsTextBox.Size = New System.Drawing.Size(862, 236)
+        Me.CommentsTextBox.TabIndex = 2
+        '
+        'DisplayCommentCheckBox
+        '
+        Me.DisplayCommentCheckBox.AutoCheck = False
+        Me.DisplayCommentCheckBox.AutoSize = True
+        Me.DisplayCommentCheckBox.Location = New System.Drawing.Point(9, 264)
+        Me.DisplayCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
+        Me.DisplayCommentCheckBox.Name = "DisplayCommentCheckBox"
+        Me.DisplayCommentCheckBox.Size = New System.Drawing.Size(230, 17)
+        Me.DisplayCommentCheckBox.TabIndex = 1
+        Me.DisplayCommentCheckBox.Text = "Display Comment When Ordering/Invoicing"
+        Me.DisplayCommentCheckBox.UseVisualStyleBackColor = True
+        '
         'TabControl2
         '
         Me.TabControl2.Controls.Add(Me.TabPage5)
@@ -1320,8 +1366,8 @@ Partial Class PartForm
         '
         'Column16
         '
-        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control
-        Me.Column16.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        Me.Column16.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column16.HeaderText = "Column16"
         Me.Column16.Name = "Column16"
         Me.Column16.ReadOnly = True
@@ -1364,8 +1410,8 @@ Partial Class PartForm
         '
         'DataGridViewTextBoxColumn1
         '
-        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewTextBoxColumn1.HeaderText = "Column16"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
@@ -1407,8 +1453,8 @@ Partial Class PartForm
         '
         'DataGridViewTextBoxColumn3
         '
-        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTextBoxColumn3.HeaderText = "Column16"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
@@ -1527,52 +1573,6 @@ Partial Class PartForm
         Me.ActivePartLabel.TabIndex = 7
         Me.ActivePartLabel.Text = "Active Status"
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.AddCommentCheckBox)
-        Me.GroupBox1.Controls.Add(Me.CommentsTextBox)
-        Me.GroupBox1.Controls.Add(Me.DisplayCommentCheckBox)
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 150)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(874, 287)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Comments"
-        '
-        'DisplayCommentCheckBox
-        '
-        Me.DisplayCommentCheckBox.AutoCheck = False
-        Me.DisplayCommentCheckBox.AutoSize = True
-        Me.DisplayCommentCheckBox.Location = New System.Drawing.Point(9, 264)
-        Me.DisplayCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
-        Me.DisplayCommentCheckBox.Name = "DisplayCommentCheckBox"
-        Me.DisplayCommentCheckBox.Size = New System.Drawing.Size(230, 17)
-        Me.DisplayCommentCheckBox.TabIndex = 1
-        Me.DisplayCommentCheckBox.Text = "Display Comment When Ordering/Invoicing"
-        Me.DisplayCommentCheckBox.UseVisualStyleBackColor = True
-        '
-        'CommentsTextBox
-        '
-        Me.CommentsTextBox.BackColor = System.Drawing.SystemColors.Window
-        Me.CommentsTextBox.Location = New System.Drawing.Point(6, 19)
-        Me.CommentsTextBox.Multiline = True
-        Me.CommentsTextBox.Name = "CommentsTextBox"
-        Me.CommentsTextBox.ReadOnly = True
-        Me.CommentsTextBox.Size = New System.Drawing.Size(862, 236)
-        Me.CommentsTextBox.TabIndex = 2
-        '
-        'AddCommentCheckBox
-        '
-        Me.AddCommentCheckBox.AutoCheck = False
-        Me.AddCommentCheckBox.AutoSize = True
-        Me.AddCommentCheckBox.Location = New System.Drawing.Point(248, 264)
-        Me.AddCommentCheckBox.Margin = New System.Windows.Forms.Padding(6, 6, 3, 3)
-        Me.AddCommentCheckBox.Name = "AddCommentCheckBox"
-        Me.AddCommentCheckBox.Size = New System.Drawing.Size(173, 17)
-        Me.AddCommentCheckBox.TabIndex = 3
-        Me.AddCommentCheckBox.Text = "Add Comment to Order/Invoice"
-        Me.AddCommentCheckBox.UseVisualStyleBackColor = True
-        '
         'PartForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1604,6 +1604,8 @@ Partial Class PartForm
         Me.TabPage3.PerformLayout()
         CType(Me.PriceDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         CType(Me.Index1DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1611,8 +1613,6 @@ Partial Class PartForm
         CType(Me.Index2DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage7.ResumeLayout(False)
         CType(Me.Index3DataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1655,7 +1655,6 @@ Partial Class PartForm
     Friend WithEvents SupplierDescTextBox As TextBox
     Friend WithEvents GroupDescTextBox As TextBox
     Friend WithEvents FormulaGroupBox As GroupBox
-    Friend WithEvents SelectedPartTextBox As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents ProjectCategoryTextBox As TextBox
     Friend WithEvents Label29 As Label
@@ -1754,4 +1753,5 @@ Partial Class PartForm
     Friend WithEvents AddCommentCheckBox As CheckBox
     Friend WithEvents CommentsTextBox As TextBox
     Friend WithEvents DisplayCommentCheckBox As CheckBox
+    Public WithEvents SelectedPartTextBox As TextBox
 End Class

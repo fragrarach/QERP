@@ -28,6 +28,7 @@ Partial Class HomeForm
         Me.PartsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanningBookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WeightsDimsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class HomeForm
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem, Me.OrdersToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem, Me.OrdersToolStripMenuItem, Me.WeightsDimsToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.TestToolStripMenuItem.Text = "Modules"
@@ -64,6 +65,12 @@ Partial Class HomeForm
         Me.OrdersToolStripMenuItem.Name = "OrdersToolStripMenuItem"
         Me.OrdersToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.OrdersToolStripMenuItem.Text = "Orders"
+        '
+        'WeightsDimsToolStripMenuItem
+        '
+        Me.WeightsDimsToolStripMenuItem.Name = "WeightsDimsToolStripMenuItem"
+        Me.WeightsDimsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.WeightsDimsToolStripMenuItem.Text = "Weights and Dims"
         '
         'HomeForm
         '
@@ -89,4 +96,5 @@ Partial Class HomeForm
     Friend WithEvents PartsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PlanningBookToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OrdersToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WeightsDimsToolStripMenuItem As ToolStripMenuItem
 End Class

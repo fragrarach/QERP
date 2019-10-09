@@ -83,6 +83,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property COLLAPSE_ALL_ICON() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("COLLAPSE_ALL_ICON", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property CONFIGURE_ICON() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("CONFIGURE_ICON", resourceCulture)
@@ -96,6 +106,16 @@ Namespace My.Resources
         Friend ReadOnly Property DOC_ICON() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("DOC_ICON", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property EXPAND_ALL_ICON() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("EXPAND_ALL_ICON", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -251,7 +271,7 @@ Namespace My.Resources
         '''        p.prt_idx2_4,
         '''        p.prt_idx2_5,
         '''        p.prt_idx3_1,
-        '''        p.prt_idx3_2 [rest of string was truncated]&quot;;.
+        ''' [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property part_listing_form_view() As String
             Get
