@@ -28,9 +28,11 @@
             OldSelectedPart = ""
         End If
         If RootPart <> OldSelectedPart Then
+            LoadingForm.LoadingFormInit("Loading bill of materials for " + RootPart, Me)
             Query = "SELECT DISTINCT target_no FROM descendents WHERE target_no = '" + RootPart + "'"
             Dim ParentRecord As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
             If ParentRecord IsNot Nothing Then
+
                 Me.TreeView1.Nodes.Clear()
 
                 Dim TreeRoot = New TreeNode(RootPart)
@@ -50,14 +52,17 @@
 
                 Query = "SELECT DISTINCT des_no, direct_parent_no, bma_sort, child_sort FROM descendents WHERE target_no = '" + RootPart + "' ORDER BY bma_sort, child_sort"
                 Dim RootRecord As Array = PostgresMethods.PostgresQuery(Query, ProdConnectionString)
+
                 RecurseNodes(Me.TreeView1.Nodes, RootRecord)
 
                 Me.TreeView1.ExpandAll()
                 Me.TreeView1.SelectedNode = TreeRoot
+
             Else
                 MessageBox.Show("No bill of materials exists for selected part number")
                 SelectedPartTextBox.Text = OldSelectedPart
             End If
+            LoadingForm.Close()
         End If
     End Sub
     Private Sub RecurseNodes(ByVal RootNode As TreeNodeCollection, ByVal RootRecord As Array)
@@ -82,7 +87,6 @@
                     }
                     Node.Nodes.Add(TreeNode)
                 End If
-
             Next
 
             RecurseNodes(Node.Nodes, RootRecord)

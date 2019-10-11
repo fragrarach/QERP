@@ -212,6 +212,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\LoadingForm.Designer.vb">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\LoadingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\TreeViewForm.Designer.vb">
       <DependentUpon>TreeViewForm.vb</DependentUpon>
     </Compile>
@@ -303,10 +309,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\PartListingConfig.vb" />
-    <Compile Include="My Project\LoadingForm.Designer.vb">
-      <DependentUpon>LoadingForm.vb</DependentUpon>
+    <Compile Include="My Project\LoadingBarForm.Designer.vb">
+      <DependentUpon>LoadingBarForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="My Project\LoadingForm.vb">
+    <Compile Include="My Project\LoadingBarForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\ListingForm.Designer.vb">
@@ -337,6 +343,9 @@
     <Compile Include="My Project\SQLConfig.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\LoadingForm.resx">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\TreeViewForm.resx">
       <DependentUpon>TreeViewForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -373,8 +382,8 @@
     <EmbeddedResource Include="My Project\LabelForm.resx">
       <DependentUpon>LabelForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\LoadingForm.resx">
-      <DependentUpon>LoadingForm.vb</DependentUpon>
+    <EmbeddedResource Include="My Project\LoadingBarForm.resx">
+      <DependentUpon>LoadingBarForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\ListingForm.resx">
       <DependentUpon>ListingForm.vb</DependentUpon>

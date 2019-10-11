@@ -48,9 +48,9 @@
             Dim Max As Int32 = (UBound(Record, 2) + 1)
             Dim LoadingText As String = "Loading - "
             If Not IsNothing(ParentForm) Then
-                LoadingForm.LoadingBarInit(Max, LoadingText, ParentForm)
+                LoadingBarForm.LoadingBarInit(Max, LoadingText, ParentForm)
             Else
-                LoadingForm.LoadingBarInit(Max, LoadingText)
+                LoadingBarForm.LoadingBarInit(Max, LoadingText)
             End If
 
             For ColumnIndex = 0 To UBound(Record, 1)
@@ -69,9 +69,9 @@
                     End If
                 Next
                 RecordTable.Rows.Add(RecordRow)
-                LoadingForm.LoadingBarIncrement()
+                LoadingBarForm.LoadingBarIncrement()
             Next
-            LoadingForm.Close()
+            LoadingBarForm.Close()
         End If
 
         ExtensionMethods.DoubleBuffered(Me.DataGridView, True)

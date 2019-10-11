@@ -41,7 +41,7 @@ Partial Class TreeViewForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TreeView1.Location = New System.Drawing.Point(4, 66)
         Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(616, 371)
+        Me.TreeView1.Size = New System.Drawing.Size(308, 371)
         Me.TreeView1.TabIndex = 0
         '
         'Label2

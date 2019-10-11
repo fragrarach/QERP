@@ -1,7 +1,10 @@
-﻿Public Class LoadingForm
+﻿Public Class LoadingBarForm
     Dim LoadingText As String
     Shadows ParentForm
-    Public Sub LoadingFormInit(ByVal Text As String, ByRef Optional ParentFormArg As Form = Nothing)
+    Public Sub LoadingBarInit(ByVal Max As Int32, ByVal Text As String, ByRef Optional ParentFormArg As Form = Nothing)
+        Me.LoadingProgressBar.Value = 0
+        Me.LoadingProgressBar.Maximum = Max
+        Me.LoadingText = Text
 
         If Not IsNothing(ParentFormArg) Then
             ParentForm = ParentFormArg
@@ -19,7 +22,11 @@
         Me.TopMost = True
 
         Me.Show()
-        Me.LoadingTextBox.Text = Text
+    End Sub
+    Public Sub LoadingBarIncrement()
+        Me.LoadingProgressBar.Value += 1
+        Dim LoadingPercent As Int16 = (Me.LoadingProgressBar.Value / Me.LoadingProgressBar.Maximum) * 100
+        Me.LoadingTextBox.Text = LoadingText & LoadingPercent & "%"
         Me.LoadingTextBox.Refresh()
     End Sub
 End Class
