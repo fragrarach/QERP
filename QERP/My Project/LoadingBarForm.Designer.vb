@@ -50,7 +50,7 @@ Partial Class LoadingBarForm
         Me.LoadingTextBox.TabIndex = 1
         Me.LoadingTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'LoadingForm
+        'LoadingBarForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -58,10 +58,11 @@ Partial Class LoadingBarForm
         Me.ControlBox = False
         Me.Controls.Add(Me.LoadingTextBox)
         Me.Controls.Add(Me.LoadingProgressBar)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "LoadingForm"
+        Me.Name = "LoadingBarForm"
         Me.Padding = New System.Windows.Forms.Padding(1)
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

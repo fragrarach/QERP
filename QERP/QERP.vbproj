@@ -218,10 +218,10 @@
     <Compile Include="My Project\LoadingForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="My Project\TreeViewForm.Designer.vb">
-      <DependentUpon>TreeViewForm.vb</DependentUpon>
+    <Compile Include="My Project\BomForm.Designer.vb">
+      <DependentUpon>BomForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="My Project\TreeViewForm.vb">
+    <Compile Include="My Project\BomForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\OrderLineListingConfig.vb" />
@@ -346,8 +346,8 @@
     <EmbeddedResource Include="My Project\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\TreeViewForm.resx">
-      <DependentUpon>TreeViewForm.vb</DependentUpon>
+    <EmbeddedResource Include="My Project\BomForm.resx">
+      <DependentUpon>BomForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\OrderLineListingForm.resx">
       <DependentUpon>OrderLineListingForm.vb</DependentUpon>

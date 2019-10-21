@@ -58,7 +58,7 @@
             LoadCount()
 
             If Not IsNothing(ParentForm) Then
-                If ParentForm.GetType() Is GetType(PartForm) Or ParentForm.GetType() Is GetType(TreeViewForm) Then
+                If ParentForm.GetType() Is GetType(PartForm) Or ParentForm.GetType() Is GetType(BomForm) Then
                     If ParentForm.SelectedPartTextBox.Text IsNot Nothing Then
                         Search(ParentForm.SelectedPartTextBox, True)
                     End If
@@ -219,7 +219,7 @@
 
     Public Overrides Sub DataGridView_CellStateChanged(sender As Object, e As DataGridViewCellEventArgs)
         If Not IsNothing(ParentForm) Then
-            If ParentForm.GetType() Is GetType(PartForm) Or ParentForm.GetType() Is GetType(TreeViewForm) Then
+            If ParentForm.GetType() Is GetType(PartForm) Or ParentForm.GetType() Is GetType(BomForm) Then
                 If e.ColumnIndex = 0 And e.RowIndex <> -1 Then
                     ParentForm.SelectedPartTextBox.Text = Me.DataGridView.Item(0, e.RowIndex).Value
                     If KeepOpenCheckBox.Checked = False Then

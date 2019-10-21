@@ -30,4 +30,12 @@
         }
         PLQListingFormInstance.Show()
     End Sub
+
+    Private Sub BillOfMaterialsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BillOfMaterialsToolStripMenuItem.Click
+        Dim BomFormInstance As New BomForm(Me) With {
+            .Owner = Me,
+            .MdiParent = Me
+        }
+        BomFormInstance.Show()
+    End Sub
 End Class

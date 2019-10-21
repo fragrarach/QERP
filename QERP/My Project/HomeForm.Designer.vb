@@ -29,6 +29,7 @@ Partial Class HomeForm
         Me.PlanningBookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WeightsDimsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BillOfMaterialsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +44,7 @@ Partial Class HomeForm
         '
         'TestToolStripMenuItem
         '
-        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem, Me.OrdersToolStripMenuItem, Me.WeightsDimsToolStripMenuItem})
+        Me.TestToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PartsToolStripMenuItem, Me.PlanningBookToolStripMenuItem, Me.OrdersToolStripMenuItem, Me.WeightsDimsToolStripMenuItem, Me.BillOfMaterialsToolStripMenuItem})
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
         Me.TestToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.TestToolStripMenuItem.Text = "Modules"
@@ -72,6 +73,12 @@ Partial Class HomeForm
         Me.WeightsDimsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.WeightsDimsToolStripMenuItem.Text = "Weights and Dims"
         '
+        'BillOfMaterialsToolStripMenuItem
+        '
+        Me.BillOfMaterialsToolStripMenuItem.Name = "BillOfMaterialsToolStripMenuItem"
+        Me.BillOfMaterialsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BillOfMaterialsToolStripMenuItem.Text = "Bill of Materials"
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -97,4 +104,5 @@ Partial Class HomeForm
     Friend WithEvents PlanningBookToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OrdersToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WeightsDimsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BillOfMaterialsToolStripMenuItem As ToolStripMenuItem
 End Class

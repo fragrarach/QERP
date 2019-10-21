@@ -47,6 +47,7 @@ Partial Class LoadingForm
         Me.ClientSize = New System.Drawing.Size(284, 21)
         Me.ControlBox = False
         Me.Controls.Add(Me.LoadingTextBox)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
